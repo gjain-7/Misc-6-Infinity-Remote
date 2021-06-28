@@ -1,0 +1,243 @@
+body{
+    background-color:var(--bg-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-width:300px;
+    min-height:500px;
+    
+}
+.heading{
+    color:var(--heading-color);
+    background-color: var(--heading-bg-color);
+    width:92vw;
+    position: absolute;
+    top:1vw;
+    font-size: 5vw;
+    height: 8vw;
+    padding: 2vw 2vw 0vw 2vw;
+    font-weight: bold;
+    border-radius: 2vw;
+}
+
+
+.cross{
+    height: 12vw;
+    cursor: pointer;
+    border-radius: 100%;
+    position: absolute;
+    right: 10vw ;
+    top: 14vw;
+    box-shadow: 1px 1px 1px 1px;
+    
+}
+.cross:hover{
+    box-shadow: 0px 0px;
+    
+}
+
+.enabled{
+    color:var(--icon-color);
+}
+.fa-arrow-left{
+    position: absolute;
+    top: 16vw;
+    left: 10vw;
+    cursor: pointer;
+    color:var(--icon-color);
+}
+
+.enabled:active{
+    color:var(--heading-color);
+}
+.button1:active{
+    color:var(--heading-color);
+}
+
+.button1:hover{
+    border: solid var(--heading-color);
+    border-width: 1vw;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+}
+.select:hover{
+    transition-duration: 0ms;
+    
+}
+
+
+.button1{
+    background-color: var(--button-bg-color);
+    position: absolute;
+    height:18vw;
+    width:20vw;
+    font-size: 4vw;
+    border-radius: 20%;
+    border-width: 1vw;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in-out;
+    border-color: var(--button-border-color);
+}
+.button1:hover{
+    border: solid var(--button-hover-color);
+    border-width: 1vw;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+}
+
+.disabled{
+    color:var(--icon-color);
+    opacity: 0.5;
+    cursor: default;
+}
+
+.button2{
+    background-color: var(--button-bg-color);
+    position: absolute;
+    height:18vw;
+    width:20vw;
+    font-size: 4vw;
+    border-radius: 20%;
+    border-width: 1vw;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in-out;
+    border-color: var(--button-border-color);
+    opacity:0.5;
+}
+
+.button2:hover{
+    cursor: default;
+}
+
+.disabled:active{
+    color:var(--icon-color);
+}
+
+.select{
+    top: 56vw;
+    left: 40vw;
+    /*
+    height: 20vw;
+    width: 22vw;
+    left: 40vw;
+    top: 56vw;
+    */
+    color:var(--icon-color);
+    font-weight: bold;
+}
+
+.left{
+    top:56vw;
+    left:18vw;
+}
+
+.right{
+    top:56vw;
+    left:62vw;
+}
+
+.above{
+    top:36vw;
+    left:40vw;
+}
+ 
+.below{
+    top:76vw;
+    left:40vw;
+}
+
+.mute{
+    top:100vw;
+    left:40vw;
+}
+.step-backward{
+    top:100vw;
+    left:18vw;
+}
+.step-forward{
+    top:100vw;
+    left:62vw;
+}
+.search{
+    top: 120vw;
+    left:18vw;
+}
+.expand{
+    top: 120vw;
+    left:62vw;
+}
+
+.caption{
+    left:40vw;
+    top:120vw;
+}
+
+  .theme-switch {
+    position: absolute;
+    top: 2vw;
+    right:7vw;
+    height: 6.5vw;
+    width: 12vw;
+  }
+  
+  .theme-switch input {
+    display:none;
+  }
+  
+  .slider {
+    background-color: #888;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    background-color: #fff;
+    bottom: 0.8vw;
+    content: "";
+    height: 5.2vw;
+    left: 0.8vw;
+    position: absolute;
+    transition: .4s;
+    width: 5.2vw;
+  }
+  
+  input:checked + .slider {
+    /*background-color: #66bb6a;*/
+    background-color: #00bfff;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(5.2vw);
+  }
+  
+  .slider.round {
+    border-radius: 6.8vw;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  :root {
+    --bg-color: #eafbff;
+    --heading-bg-color: #ddd;
+    --heading-color:#1261a0;
+    --icon-color:#020202;
+    --button-bg-color:#AAAAAA;
+    --button-border-color:#999999;
+    --button-hover-color:#1261a0;
+}
+[data-theme="dark"] {
+    --bg-color: #0c1a32;
+    --heading-bg-color: #020202;
+    --heading-color:#00bfff;
+    --icon-color:white;
+    --button-bg-color:#777777;
+    --button-border-color:#AAAAAA;
+    --button-hover-color:dodgerblue;
+}
