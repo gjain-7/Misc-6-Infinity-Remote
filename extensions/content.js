@@ -197,8 +197,23 @@ function changeplay(){
     });
     document.dispatchEvent(e);        
 }
-
-
+function speed(rangeSliderValue){
+    setTimeout(() => {
+      document.getElementsByClassName("ytp-settings-button")[0].click();
+    }, 1);
+    setTimeout(() => {
+      for(const element of document.getElementsByClassName("ytp-menuitem-label")){
+        if(element.innerText == "Playback speed"){
+            element.click();
+            break;
+        }
+      }
+    }, 1);
+    setTimeout(() => {
+      document.getElementsByClassName("ytp-menuitem")[rangeSliderValue].click();
+    }, 1);
+    document.getElementsByClassName("ytp-settings-button")[0].click();
+}
 
 chrome.runtime.onMessage.addListener(gotMessage);
 
@@ -241,5 +256,8 @@ function gotMessage(message, _sender, _sendResponse){
     }
     else if(message==="changeback"){
         changeback();
+    }
+    else if(message.split(",")[0]=="speed"){
+        speed(Number(message.split(",")[1]));
     }
 }

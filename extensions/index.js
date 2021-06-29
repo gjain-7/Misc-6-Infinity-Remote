@@ -54,6 +54,7 @@ document.getElementById("p8").addEventListener("click",stepback);
 document.getElementById("p9").addEventListener("click",search);
 document.getElementById("p10").addEventListener("click",screene);
 document.getElementById("p11").addEventListener("click",caption);
+document.getElementById("rs-range-line").addEventListener("input",speed, false);
 
 var selectcounter=0;
 var screencounter=0; 
@@ -195,6 +196,18 @@ function caption(){
 function search(){
     if (screencounter%2==0){
         apply("search");   
+    }
+}
+
+function speed(){
+    if(screencounter%2==0){
+        const playbackSpeed = [0.25,0.5,0.75,1,1.25,1.5,1.75,2];
+        let rangeSlider = document.getElementById("rs-range-line");
+        let rangeBullet = document.getElementById("rs-bullet");
+        rangeBullet.innerHTML = "x "+ playbackSpeed[rangeSlider.value];
+        var bulletPosition = (rangeSlider.value /rangeSlider.max);
+        rangeBullet.style.left = (bulletPosition * 70) + "vw";
+        apply(`speed,${rangeSlider.value}`);
     }
 }
 
