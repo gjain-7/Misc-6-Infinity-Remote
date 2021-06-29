@@ -9,6 +9,12 @@ function apply(message){
         chrome.tabs.sendMessage(tabs[0].id, message);
     }
 }
+chrome.runtime.onMessage.addListener(gotMsg);
+
+function gotMsg(message, _sender,_sendResponse){
+    console.log(message.url);
+}
+
 
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 
@@ -42,12 +48,20 @@ if (currentTheme) {
     }
 }
 
+var downid;
+var rightid;
+var leftid;
+var upid;
+
+
 document.getElementById("p").addEventListener("click",changeback);
 document.getElementById("p1").addEventListener("click",change);
+/*
 document.getElementById("p2").addEventListener("click",leftbutton);
 document.getElementById("p3").addEventListener("click",rightbutton);
 document.getElementById("p4").addEventListener("click",upbutton);
 document.getElementById("p5").addEventListener("click",downbutton);
+*/
 document.getElementById("p6").addEventListener("click",stepfor);
 document.getElementById("p7").addEventListener("click",vol);
 document.getElementById("p8").addEventListener("click",stepback);
@@ -55,6 +69,15 @@ document.getElementById("p9").addEventListener("click",search);
 document.getElementById("p10").addEventListener("click",screene);
 document.getElementById("p11").addEventListener("click",caption);
 document.getElementById("rs-range-line").addEventListener("input",speed, false);
+
+document.getElementById("p2").addEventListener("mousedown",function(){leftbutton();leftid=setInterval(leftbutton,300);});
+document.getElementById("p2").addEventListener("mouseup",function(){clearInterval(leftid);});
+document.getElementById("p3").addEventListener("mousedown",function(){rightbutton();rightid=setInterval(rightbutton,300);});
+document.getElementById("p3").addEventListener("mouseup",function(){clearInterval(rightid);});
+document.getElementById("p4").addEventListener("mousedown",function(){upbutton();upid=setInterval(upbutton,300);});
+document.getElementById("p4").addEventListener("mouseup",function(){clearInterval(upid);});
+document.getElementById("p5").addEventListener("mousedown",function(){downbutton();downid=setInterval(downbutton,300);});
+document.getElementById("p5").addEventListener("mouseup",function(){clearInterval(downid);});
 
 var selectcounter=0;
 var screencounter=0; 
@@ -74,7 +97,7 @@ document.getElementById("p11").className="button2 caption";
 
 function change(){
     if (selectcounter==0){
-        document.getElementById("p1").innerHTML="<i class='enabled fas fa-play fa-2x'></i>";
+        document.getElementById("p1").innerHTML="<i class='enabled fas fa-pause fa-2x'></i>";
         document.getElementById("p2").innerHTML="<i class='enabled fas fa-backward fa-2x'></i>";
         document.getElementById("p3").innerHTML="<i class='enabled fas fa-forward fa-2x'></i>";
         document.getElementById("p4").innerHTML="<i class='enabled fas fa-volume-up fa-2x'></i>";
@@ -94,10 +117,10 @@ function change(){
     }
     else {
         if(selectcounter%2==1){
-            document.getElementById("p1").innerHTML="<i class='enabled fas fa-pause fa-2x'></i>";
+            document.getElementById("p1").innerHTML="<i class='enabled fas fa-play fa-2x'></i>";
         }
         else{
-            document.getElementById("p1").innerHTML="<i class='enabled fas fa-play fa-2x'></i>";
+            document.getElementById("p1").innerHTML="<i class='enabled fas fa-pause fa-2x'></i>";
         }
         apply("changeplay");
     }
@@ -181,10 +204,20 @@ function rightbutton(){
     apply("rightbutton");
 }
 function upbutton(){
-    apply("upbutton");
+    if (selectcounter>0){
+        apply("volup");
+    }
+    else{
+        apply("upbutton");
+    }
 }
 function downbutton (){
-    apply("downbutton");
+    if (selectcounter>0){
+        apply("voldown");
+    }
+    else{
+        apply("downbutton");
+    }
 }
 
 function caption(){
@@ -216,4 +249,13 @@ window.addEventListener("keydown", function(event) {
 }, true);
 
 
-console.log("Popup worked");
+console.log("Popup Completed");
+
+
+/*
+chrome.runtime.onMessage.addListener(gotmsg);
+console.log("hi");
+function gotmsg(message,_sender,_sendResponse){
+    console.log(message);
+}
+*/
