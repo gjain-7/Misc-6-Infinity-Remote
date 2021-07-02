@@ -36,6 +36,8 @@ function gotMsg(message, sender, _sendResponse) {
   ) {
     selectcounter = 2;
     searchscreen();
+  } else if(message=="Play"){
+    change();
   }
 }
 
@@ -201,6 +203,7 @@ function videoscreen() {
     }
     document.getElementsByClassName("container")[0].style.display = "flex" ;
 }
+
 function searchscreen() {
   document.getElementById("p").className = "enabled fas fa-arrow-left fa-3x";
   document.getElementById("p1").innerHTML = "Select";
@@ -348,5 +351,10 @@ function speed(){
     apply(`speed,${rangeSlider.value}`);
 }
 
+function sendMeURL(){
+    apply("sendMeURL");
+}
+
 console.log("Popup Completed");
-panelscreen();
+sendMeURL(); // for initial url request so that popup loads according to current page 
+// panelscreen(); // Always loading with panel-screen depreceated

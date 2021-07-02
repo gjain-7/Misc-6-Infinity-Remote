@@ -366,7 +366,27 @@ function changeplay() {
   document.dispatchEvent(e);
 }
 function speed(rangeSliderValue) {
-  setTimeout(() => {
+  new Promise((response)=>{
+    document.getElementsByClassName("ytp-settings-button")[0].click();
+//  alert(1);
+    response();
+  })
+  .then(()=>{
+  //     alert(2);
+      for (const element of document.getElementsByClassName("ytp-menuitem-label")) {
+      if (element.innerText == "Playback speed") {
+          element.click();
+          break;
+          }
+      }
+  }).then(()=>{
+  //     alert(3);
+      document.getElementsByClassName("ytp-menuitem")[3+rangeSliderValue].click();
+  }).then(()=>{
+      document.getElementsByClassName("ytp-settings-button")[0].click();
+  });
+
+/*   setTimeout(() => {
     document.getElementsByClassName("ytp-settings-button")[0].click();
   }, 1);
   setTimeout(() => {
@@ -382,7 +402,14 @@ function speed(rangeSliderValue) {
   setTimeout(() => {
     document.getElementsByClassName("ytp-menuitem")[rangeSliderValue].click();
   }, 1);
-  document.getElementsByClassName("ytp-settings-button")[0].click();
+  document.getElementsByClassName("ytp-settings-button")[0].click(); */
+}
+
+function sendMeURL(){
+  chrome.runtime.sendMessage({ url: location.href });
+  chrome.runtime.sendMessage(document.getElementsByClassName("ytp-play-button")[0].attributes["aria-label"].nodeValue.slice(0,-4));
+  console.log(document.getElementsByClassName("ytp-play-button")[0].attributes["aria-label"].nodeValue.slice(0,-4));
+  // sending the play/pause information as well
 }
 
 chrome.runtime.onMessage.addListener(gotMessage);
@@ -426,6 +453,8 @@ function gotMessage(message, _sender, sendResponse) {
     voldown();
   } else if (message.split(",")[0] == "speed") {
     speed(Number(message.split(",")[1]));
+  }else if (message === "sendMeURL") {
+    sendMeURL();
   }
   return true;
 }
