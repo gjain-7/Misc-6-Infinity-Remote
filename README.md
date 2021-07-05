@@ -15,8 +15,8 @@ It has a few problems now, which includes:
 4. Buttons when the extension is first opened
 
 
-
-Update Monday, 05/07/2021:
+**
+Update Monday, 05/07/2021:**
 
 Objectives Completed:
 1. Implemented UI for the remote (this will need to be fixed when we will add functionalities for search page and video navigation on videoscreen)
