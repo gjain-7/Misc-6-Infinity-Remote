@@ -1,25 +1,10 @@
 # Misc-6-Infinity-Remote
 
-The files index.html, styles.css, index.js, and cross.png show the UI for the remote along with basic functionalities.
-The file console.js is the one which we will be injecting into the console using the extension.
-
-It would be great if you open youtube in your browser and copy paste the console.js code and see the functionalities with your arrows.
-
-
-Update Monday, 28/06/2021:
-Added Extension with popup.html, try to download the whole folder and load unpack in chrome://extensions, and then see its working.
-It has a few problems now, which includes:
-1. search button
-2. volume button
-3. Carrot down menu in youtube
-4. Buttons when the extension is first opened
-
-
 **
 Update Thursday, 08/07/2021:**
 
 Objectives Completed:
-1. Implemented UI for the remote (this will need to be fixed when we will add functionalities for search page and video navigation on videoscreen)
+1. Implemented UI for the remote (this will need to be fixed when we will add other functionalities for search page and video navigation on videoscreen)
 2. Implemented features for movement of highlighter (including carrot down menu) on panelscreen 
 3. Implementing authorisation/ ids to enforce a 1 to 1 connection between remote and extension, and changing the qrcode depending upon the id
 4. Implemented features for pausing, playing, volume, mute, forward, step forward, captions and full screen (although not working now after connecting with socket).
@@ -30,11 +15,11 @@ Objectives Completed:
 
 Added popup.html that now gives a QR code, and a popup.js for that (using QRious). Added background.js and server.js that will be acting as middlemen between content.js and index.js (js file for remote). 
 
-How to implement: Try downloading the whole folder named extensionss (having double s in the end), and then in the same folder, applying "npm install", followed by load unpacking the extension in chrome://extensions. Open youtube on a tab, then initiate the server using "node server.js" in the command line, followed by opening "mainpage.html" using live server. Required: You need to enable this in your chrome - chrome://flags/#extensions-on-chrome-urls
+How to implement: Try downloading the whole folder named Project, and then in the same folder, applying "npm install", followed by load unpacking the extension in chrome://extensions. Open youtube on a tab, then initiate the server using "node server.js" in the command line, followed by opening "mainpage.html". Required: You need to enable this in your chrome - chrome://flags/#extensions-on-chrome-urls
 
 Objectives To do (as per priority):
-1. Implementing the server using Heroku/Firebase
-2. Implementing a database in order to store data
+1. Implementing PWA scanner with good UI
+2. Implementing the server using Heroku/Firebase
 3. Implementing a remote for the search page, and videos that are present on the videoscreen (or the second screen)
 
 Difficulties being faced:
