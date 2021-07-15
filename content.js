@@ -276,7 +276,7 @@ function searchscreen() {
         });
 
         more = false;
-      } else thumbnails[thumbnails_index].click();
+      } else this.document.location=thumbnails[thumbnails_index].href;
     } else if (
       event.keyCode == 37 ||
       event.keyCode == 38 ||
@@ -628,7 +628,7 @@ function gotMessage(message, _sender, sendResponse) {
     initvalue = Number(message.split(",")[1]);
   } else if (message.split(",")[0] == "search") {
     let searchquery = message.split(",")[1];
-    searchquery = urlencode(searchquery);
+    searchquery = encodeURIComponent(searchquery);
     youtubesearch(searchquery);
   }
 }
@@ -636,56 +636,3 @@ function gotMessage(message, _sender, sendResponse) {
 var d = new Date();
 console.log("Content Scripts Working " + d.toLocaleTimeString());
 
-function urlencode(x) {
-  let y = "";
-  for (let i of x) {
-    if (i == "`") {
-      y += "%60";
-    } else if (i == "@") {
-      y += "%40";
-    } else if (i == "#") {
-      y += "%23";
-    } else if (i == "$") {
-      y += "%24";
-    } else if (i == "%") {
-      y += "%25";
-    } else if (i == "^") {
-      y += "%5E";
-    } else if (i == "&") {
-      y += "%26";
-    } else if (i == "+") {
-      y += "%2B";
-    } else if (i == "=") {
-      y += "%3D";
-    } else if (i == "[") {
-      y += "%5B";
-    } else if (i == "]") {
-      y += "%5D";
-    } else if (i == "{") {
-      y += "%7B";
-    } else if (i == "}") {
-      y += "%7D";
-    } else if (i == "\\") {
-      y += "%5C";
-    } else if (i == "|") {
-      y += "%7C";
-    } else if (i == ";") {
-      y += "%3B";
-    } else if (i == ":") {
-      y += "%3A";
-    } else if (i == "'") {
-      y += "%27";
-    } else if (i == ",") {
-      y += "%2C";
-    } else if (i == "/") {
-      y += "%2F";
-    } else if (i == "?") {
-      y += "%3F";
-    } else if (i == " ") {
-      y += "+";
-    } else {
-      y += i;
-    }
-  }
-  return y;
-}
