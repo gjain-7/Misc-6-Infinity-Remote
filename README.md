@@ -27,6 +27,6 @@ Try downloading the whole folder named Project, and then in the same folder, app
 2. Now fullscreen also not working
 
 ### Fixes Used (Jugaad, although working, but should not have been used)
-1. Volume regulation
-2. Keyboard Shortcuts rather than API
+1. Volume regulation (uncoventional, although working)
+2. Keyboard Shortcuts rather than API (unconventional but a new kind of approach towards the problem)
 3. chrome://flags/#extensions-on-chrome-urls (Will need to be fixed or feature to be added for its permission or removed completely)
