@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="mainpage.css" />
+    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinity Remote</title>
+    <script>
+      // yeh mainpage.html ka .ejs version hai
+      const roomName = "<%= roomName %>"; // yahan se mainpage.js remote ka code shuru hoga
+    </script>
+  </head>
+  <body>
+    <div class="heading">
+      Infinity Remote
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <div class="slider round"></div>
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <i class="enabled fas fa-arrow-left fa-2x" id="p"></i>
+      <i class="enabled fas fa-search fa-2x" id="p13"></i>
+    </div>
+
+    <button class="button1 select" id="p1">Select</button>
+    <button class="button1 left" id="p2">
+      <i class="enabled fas fa-chevron-left fa-2x" title="Left"></i>
+    </button>
+    <button class="button1 right" id="p3">
+      <i class="enabled fas fa-chevron-right fa-2x" title="Right"></i>
+    </button>
+    <button class="button1 above" id="p4">
+      <i class="enabled fas fa-chevron-up fa-2x"></i>
+    </button>
+    <button class="button1 below" id="p5">
+      <i class="enabled fas fa-chevron-down fa-2x"></i>
+    </button>
+    <button class="button1 step-forward" id="p6">
+      <i class="enabled fas fa-step-forward fa-2x"></i>
+    </button>
+    <button class="button1 mute" id="p7">
+      <i class="enabled fas fa-volume-mute fa-2x"></i>
+    </button>
+    <button class="button1 step-backward" id="p8">
+      <i class="enabled fas fa-step-backward fa-2x"></i>
+    </button>
+    <button class="button1 home" id="p9">
+      <i class="enabled fas fa-home fa-2x"></i>
+    </button>
+    <button class="button1 expand" id="p10">
+      <i class="enabled fas fa-expand fa-2x"></i>
+    </button>
+    <button class="button1 caption" id="p11">
+      <i class="enabled fas fa-closed-captioning fa-2x"></i>
+    </button>
+    <div class="container">
+      <div class="range-slider">
+        <span id="rs-bullet" class="rs-label">x 1</span>
+        <input
+          id="rs-range-line"
+          class="rs-range"
+          type="range"
+          value="3"
+          min="0"
+          max="7"
+        />
+      </div>
+    </div>
+    <input
+      type="text"
+      class="searchbox"
+      id="searchbox"
+      placeholder="Search..."
+    />
+    <script src="http://192.168.1.10:3000/socket.io/socket.io.js"></script>
+    <script src="mainpage.js"></script>
+  </body>
+</html>
