@@ -29,9 +29,8 @@ This project uses the following packages and languages:
 5. ExpressJS
 6. Embedded Javascript Templating (EJS)
 7. Socket.io
-8. Nodemon
-9. Qrious
-10. JSQR
-11. Font Awesome Icons package
-12. Chrome Extension
-13. Progressive Web App (PWA)
+8. Qrious
+9. JSQR
+10. Font Awesome Icons package
+11. Chrome Extension
+12. Progressive Web App (PWA)
