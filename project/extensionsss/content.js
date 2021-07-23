@@ -1,8 +1,13 @@
 var initvalue = 3;
 var volumelevel = 1;
-
+var paneltoken = false;
+var searchtoken = false;
+var videotoken = false;
+var videopaneltoken = false;
+var thumbnails_index = 0;
+// var autoplayed;
 function sendfirstinfo() {
-  console.log("first connection");
+  console.log("First Connection made by the remote");
   let url = window.location.href;
   if (
     /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?(\/)?(\?app\=desktop)?$/.test(
@@ -16,17 +21,39 @@ function sendfirstinfo() {
   } else if (
     /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?(\/)?watch/.test(url)
   ) {
-    chrome.runtime.sendMessage({
-      firstc: true,
-      msg: "videoscreen",
-      speed: document.getElementsByTagName("video")[0].playbackRate,
-      volume: document.getElementsByClassName("video-stream")[0].volume,
-      playcounter: document
+    if ((/&list=/).test(url)){
+      chrome.runtime.sendMessage({
+        firstc: true,
+        msg: "videoscreen",
+        speed: document.getElementsByTagName("video")[0].playbackRate,
+        volume: document.getElementsByClassName("video-stream")[0].volume,
+        playcounter: document
+          .getElementsByClassName("ytp-play-button")[0]
+          .attributes["aria-label"].nodeValue.slice(0, -4),
+        mute: document
+          .getElementsByClassName("ytp-mute-button")[0]
+          .title.slice(0, 1),
+        playlist: true
+      });
+    }
+    else{
+      chrome.runtime.sendMessage({
+        firstc: true,
+        msg: "videoscreen",
+        speed: document.getElementsByTagName("video")[0].playbackRate,
+        volume: document.getElementsByClassName("video-stream")[0].volume,
+        playcounter: document
         .getElementsByClassName("ytp-play-button")[0]
         .attributes["aria-label"].nodeValue.slice(0, -4),
-    });
+        mute: document
+        .getElementsByClassName("ytp-mute-button")[0]
+        .title.slice(0, 1),
+        playlist: false
+      });
+    }
     initvalue = document.getElementsByTagName("video")[0].playbackRate * 4 - 1;
     volumelevel = document.getElementsByClassName("video-stream")[0].volume;
+    theater();
   } else if (
     /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?(\/)?results\?search\_query\=/.test(
       url
@@ -40,7 +67,7 @@ function sendfirstinfo() {
 }
 
 function sendinfo() {
-  console.log("later connection");
+  console.log("URL synchronized with the remote");
   let url = window.location.href;
   if (
     /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?(\/)?(\?app\=desktop)?$/.test(
@@ -74,16 +101,8 @@ function sendinfo() {
 }
 
 let lastUrl = location.href;
-sendinfo();
+sendfirstinfo();
 // console.log("sent initial");
-
-new MutationObserver(() => {
-  const url = location.href;
-  if (url !== lastUrl) {
-    lastUrl = url;
-    sendinfo();
-  }
-}).observe(document, { subtree: true, childList: true });
 
 var vidopanels;
 var panelcounter;
@@ -93,6 +112,7 @@ var muted = 0;
 var carrot = false;
 
 function setcolumn() {
+  console.log("Column Width synchronized");
   if (window.innerWidth > 1143) {
     columnnum = 4;
   } else if (window.innerWidth > 887) {
@@ -104,7 +124,8 @@ function setcolumn() {
 window.addEventListener("resize", setcolumn);
 setcolumn();
 function panelscreen() {
-  console.log("panels");
+  paneltoken = true;
+  console.log("Panel Screen Activated");
   carrotbutton = document.querySelectorAll(
     "ytd-button-renderer#show-more-button"
   );
@@ -221,39 +242,303 @@ function panelscreen() {
   );
 }
 
-function volumeset() {
-  document.getElementsByClassName("video-stream")[0].volume = volumelevel;
-  console.log(volumelevel);
-}
-function videoscreen() {
-  setInterval(volumeset, 50);
+function searchscreen() {
+  console.log("Search Screen Activated");
+  searchtoken = true;
+  var thumbnails = document.querySelectorAll("#thumbnail");
+  thumbnails.forEach(
+    (Element) => (Element.parentElement.parentElement.style.borderRight = "")
+  );
+  let search_keys = { 37: -1, 38: -1, 39: +1, 40: +1 };
+  let more = false;
+  let ele;
+  let moreele;
+  let up;
+  thumbnails[thumbnails_index].parentElement.parentElement.style.borderRight =
+    "6px solid dodgerblue";
+  function doelse() {
+    if (more) {
+      thumbnails_index -= search_keys[event.keyCode];
+      more = false;
+    }
+    thumbnails_index += search_keys[event.keyCode];
+    if (thumbnails_index < 0) thumbnails_index = 0;
+    if (thumbnails_index < thumbnails.length) {
+      thumbnails[
+        thumbnails_index
+      ].parentElement.parentElement.style.borderRight = "6px solid dodgerblue";
+      thumbnails[thumbnails_index].scrollIntoView({
+        block: "center",
+        behaviour: "smooth",
+      });
+    }
+    thumbnails = document.querySelectorAll("#thumbnail");
+  }
+
+  document.addEventListener("keydown", (event) => {
+    event.preventDefault();
+    if (event.code === "Enter") {
+      if (more) {
+        moreele.firstElementChild.click();
+        thumbnails = document.querySelectorAll("#thumbnail");
+        if (!up) thumbnails_index += 1;
+        else {
+        }
+        thumbnails[
+          thumbnails_index
+        ].parentElement.parentElement.style.borderRight =
+          "6px solid dodgerblue";
+        thumbnails[thumbnails_index].scrollIntoView({
+          block: "center",
+          behaviour: "smooth",
+        });
+
+        more = false;
+      } else this.document.location = thumbnails[thumbnails_index].href;
+    } else if (
+      event.keyCode == 37 ||
+      event.keyCode == 38 ||
+      event.keyCode == 39 ||
+      event.keyCode == 40
+    ) {
+      thumbnails[
+        thumbnails_index
+      ].parentElement.parentElement.style.borderRight = "";
+      if (more) {
+        thumbnails_index += search_keys[event.keyCode];
+        document
+          .querySelectorAll("div#more")
+          .forEach((Element) => (Element.style.borderBottom = ""));
+      }
+
+      if (
+        thumbnails[
+          thumbnails_index
+        ].parentElement.parentElement.nodeName.toLowerCase() ===
+        "ytd-playlist-renderer"
+      ) {
+        ele = thumbnails[thumbnails_index].parentElement.parentElement;
+      } else {
+        ele =
+          thumbnails[thumbnails_index].parentElement.parentElement
+            .parentElement;
+      }
+
+      if (
+        ele.parentElement.nextElementSibling !== null &&
+        search_keys[event.keyCode] == +1
+      ) {
+        if (
+          ele.parentElement.lastElementChild == ele &&
+          ele.parentElement.nextElementSibling.id == "more" &&
+          ele.parentElement.nextElementSibling.getAttribute("hidden") != ""
+        ) {
+          ele.parentElement.nextElementSibling.style.borderBottom =
+            "6px solid dodgerblue";
+          more = true;
+          moreele = ele.parentElement.nextElementSibling;
+          up = false;
+        } else doelse();
+      } else if (
+        ele.previousElementSibling !== null &&
+        search_keys[event.keyCode] == -1
+      ) {
+        if (
+          ele.previousElementSibling.nodeName.toLowerCase() ==
+            "ytd-shelf-renderer" &&
+          ele.previousElementSibling.firstElementChild.children[1].firstElementChild.children[1].getAttribute(
+            "hidden"
+          ) != ""
+        ) {
+          console.log("entered");
+          var shelf = ele.previousElementSibling;
+          shelf.firstElementChild.children[1].firstElementChild.children[1].style.borderBottom =
+            "6px solid dodgerblue";
+          more = true;
+          moreele =
+            shelf.firstElementChild.children[1].firstElementChild.children[1];
+          up = true;
+        } else doelse();
+      } else doelse();
+    }
+  });
 }
 
+function volumeset() {
+  document.getElementsByClassName("video-stream")[0].volume = volumelevel;
+}
+// var x;
+function theater() {
+  if (
+    document.getElementsByClassName("ytp-size-button")[0].title.slice(0, 7) ==
+    "Theater"
+  ) {
+    console.log("Screene Clicked");
+    screene();
+  }
+  videopaneltoken = true;
+}
+function videoscreen() {
+  videotoken = true;
+  console.log("Video Screen Activated");
+  setInterval(volumeset, 50);
+  theater();
+}
+
+function videopanelscreen() {
+  let vsindex = 0;
+  var vspanels = document.querySelectorAll(
+    "#thumbnail.yt-simple-endpoint.style-scope"
+  );
+  var playlist_panels = document.querySelectorAll(
+    "ytd-playlist-panel-video-renderer"
+  );
+  let NumOfPanels;
+  let playlist_panel_num;
+  if (playlist_panels.length != 0) NumOfPanels = playlist_panels.length;
+  vspanels[0].parentElement.parentElement.parentElement.style.borderRight =
+    "6px solid dodgerblue";
+  vspanels[vsindex].scrollIntoView({ block: "center", behaviour: "smooth" });
+  let mov_index;
+  let vskeys = { 38: -1, 40: +1 };
+  function UpdatePlaylistPanelNum() {
+    if (playlist_panels.length != 0) {
+      function collectionHas(a, b) {
+        for (var i = 0, len = a.length; i < len; i++) {
+          if (a[i] == b) return true;
+        }
+        return false;
+      }
+      function findParentBySelector(elm, selector) {
+        var all = document.querySelectorAll(selector);
+        var cur = elm.parentNode;
+        while (cur && !collectionHas(all, cur)) {
+          cur = cur.parentNode;
+        }
+        return cur;
+      }
+      if (
+        findParentBySelector(
+          vspanels[vsindex],
+          "ytd-playlist-panel-video-renderer"
+        ) !== null
+      )
+        playlist_panel_num = vsindex;
+    }
+  }
+
+  document.addEventListener("keydown", (event) => {
+    vspanels = document.querySelectorAll(
+      "#thumbnail.yt-simple-endpoint.style-scope"
+    );
+    playlist_panels = document.querySelectorAll(
+      "ytd-playlist-panel-video-renderer"
+    );
+    if (playlist_panels.length != 0) NumOfPanels = playlist_panels.length;
+    event.preventDefault();
+    if (event.code === "Enter") {
+      vspanels[
+        vsindex
+      ].parentElement.parentElement.parentElement.style.borderRight = "";
+      this.document.location = vspanels[vsindex].href;
+    } else if (event.keyCode == 38 || event.keyCode == 40) {
+      vspanels[
+        vsindex
+      ].parentElement.parentElement.parentElement.style.borderRight = "";
+      mov_index = vskeys[event.keyCode];
+      vsindex += mov_index;
+      if (vsindex < 0) vsindex = 0;
+      if (vsindex < vspanels.length) {
+        vspanels[vsindex].scrollIntoView({
+          block: "center",
+          behaviour: "smooth",
+        });
+        vspanels[
+          vsindex
+        ].parentElement.parentElement.parentElement.style.borderRight =
+          "6px solid dodgerblue";
+        vspanels = document.querySelectorAll(
+          "#thumbnail.yt-simple-endpoint.style-scope"
+        );
+      }
+      UpdatePlaylistPanelNum();
+    }
+    if (playlist_panels.length != 0) {
+      if (event.keyCode == 83 || event.keyCode == 68) {
+        vspanels[
+          vsindex
+        ].parentElement.parentElement.parentElement.style.borderRight = "";
+        if (event.keyCode == 83) vsindex = playlist_panel_num;
+        else vsindex = NumOfPanels;
+        vspanels[
+          vsindex
+        ].parentElement.parentElement.parentElement.style.borderRight =
+          "6px solid dodgerblue";
+        vspanels[vsindex].scrollIntoView({
+          block: "center",
+          behaviour: "smooth",
+        });
+      }
+    }
+    event.preventDefault();
+  });
+  function autoplayed() {
+    vspanels[
+      vsindex
+    ].parentElement.parentElement.parentElement.style.borderRight = "";
+    vsindex = 0;
+    vspanels[
+      vsindex
+    ].parentElement.parentElement.parentElement.style.borderRight =
+      "6px solid dodgerblue";
+    vspanels[vsindex].scrollIntoView({ block: "center", behaviour: "smooth" });
+    playlist_panel_num = 0;
+    if (playlist_panels.length != 0) NumOfPanels = playlist_panels.length;
+  }
+
+  let lastUrl = this.document.location;
+  new MutationObserver(() => {
+    const url = location.href;
+    if (url !== lastUrl) {
+      lastUrl = url;
+      console.log("autoplayed");
+      autoplayed();
+      // sendfirstinfo();
+    }
+  }).observe(document, { subtree: true, childList: true });
+}
 function volup() {
+  console.log("Volume has been increased");
   volumelevel += 0.1;
   volumelevel = Math.min(1, volumelevel);
   volumeset();
 }
 function voldown() {
+  console.log("Volume has been decreased");
   volumelevel -= 0.1;
   volumelevel = Math.max(0, volumelevel);
   volumeset();
 }
 
 function screene() {
-  console.log("fullscreen dabaya tha")
+  console.log("Screen Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
     charCode: "0",
-    code: "KeyF",
-    key: "f",
+    code: "KeyT",
+    key: "t",
     shiftKey: false,
-    keyCode: 70,
+    keyCode: 84,
   });
   document.dispatchEvent(e);
+  if (videopaneltoken == true) {
+    videopanelscreen();
+  }
+  videopaneltoken = false;
 }
 function vol() {
+  console.log("Mute/Unmute Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -266,6 +551,7 @@ function vol() {
   document.dispatchEvent(e);
 }
 function stepback() {
+  console.log("Step Back Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -278,6 +564,7 @@ function stepback() {
   document.dispatchEvent(e);
 }
 function stepfor() {
+  console.log("Step Forward button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -292,6 +579,7 @@ function stepfor() {
 }
 
 function leftbutton() {
+  console.log("Left Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -304,6 +592,7 @@ function leftbutton() {
   document.dispatchEvent(e);
 }
 function rightbutton() {
+  console.log("Right Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -316,6 +605,7 @@ function rightbutton() {
   document.dispatchEvent(e);
 }
 function upbutton() {
+  console.log("Up Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -328,6 +618,7 @@ function upbutton() {
   document.dispatchEvent(e);
 }
 function downbutton() {
+  console.log("Down Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -341,6 +632,7 @@ function downbutton() {
 }
 
 function caption() {
+  console.log("Closed Captions clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -353,23 +645,12 @@ function caption() {
   document.dispatchEvent(e);
 }
 
-function search() {
-  var e = new KeyboardEvent("keydown", {
-    bubbles: true,
-    cancelable: true,
-    charCode: "0",
-    code: "Slash",
-    key: "/",
-    shiftKey: false,
-    keyCode: 191,
-  });
-  document.dispatchEvent(e);
-}
 function changeback() {
+  console.log("Back Button clicked");
   window.history.back();
-  // setTimeout(volumeset,1000);
 }
 function changeselect() {
+  console.log("Select Button clicked");
   if (carrot == true) {
     var e = new KeyboardEvent("keydown", {
       bubbles: true,
@@ -386,11 +667,31 @@ function changeselect() {
   }
   // setTimeout(volumeset,1000);
 }
-
+function searchselect() {
+  console.log("Select Button clicked");
+  var e = new KeyboardEvent("keydown", {
+    bubbles: true,
+    cancelable: true,
+    charCode: "0",
+    code: "Enter",
+    key: "Enter",
+    shiftKey: false,
+    keyCode: 13,
+  });
+  document.dispatchEvent(e);
+}
 function youtube() {
+  console.log("Home Button clicked");
   this.document.location = "https://www.youtube.com/";
 }
+function youtubesearch(searchquery) {
+  console.log("Query is searched");
+  thumbnails_index = 0;
+  searchtoken = false;
+  this.document.location = `https://www.youtube.com/results?search_query=${searchquery}`;
+}
 function changeplay() {
+  console.log("Play/Pause Button is clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -402,8 +703,34 @@ function changeplay() {
   });
   document.dispatchEvent(e);
 }
-
+function backward() {
+  console.log("backward");
+  var e = new KeyboardEvent("keydown", {
+    bubbles: true,
+    cancelable: true,
+    charCode: "0",
+    code: "KeyS",
+    key: "s",
+    shiftKey: false,
+    keyCode: 83,
+  });
+  document.dispatchEvent(e);
+}
+function forward() {
+  console.log("forward");
+  var e = new KeyboardEvent("keydown", {
+    bubbles: true,
+    cancelable: true,
+    charCode: "0",
+    code: "KeyD",
+    key: "d",
+    shiftKey: false,
+    keyCode: 68,
+  });
+  document.dispatchEvent(e);
+}
 function speed(rangeSliderValue) {
+  console.log("Playback speed set");
   if (rangeSliderValue > initvalue) {
     var e = new KeyboardEvent("keydown", {
       bubbles: true,
@@ -414,7 +741,9 @@ function speed(rangeSliderValue) {
       shiftKey: true,
       keyCode: 190,
     });
-    document.dispatchEvent(e);
+    for (let i = 0; i < rangeSliderValue - initvalue; i++) {
+      document.dispatchEvent(e);
+    }
   } else {
     var e = new KeyboardEvent("keydown", {
       bubbles: true,
@@ -425,7 +754,9 @@ function speed(rangeSliderValue) {
       shiftKey: true,
       keyCode: 188,
     });
-    document.dispatchEvent(e);
+    for (let i = 0; i < initvalue - rangeSliderValue; i++) {
+      document.dispatchEvent(e);
+    }
   }
   initvalue = rangeSliderValue;
 }
@@ -441,14 +772,16 @@ function gotMessage(message, _sender, sendResponse) {
     leftbutton();
   } else if (message === "rightbutton") {
     rightbutton();
+  } else if (message === "forward") {
+    forward();
+  } else if (message === "backward") {
+    backward();
   } else if (message === "upbutton") {
     upbutton();
   } else if (message === "downbutton") {
     downbutton();
   } else if (message === "caption") {
     caption();
-  } else if (message === "search") {
-    search();
   } else if (message === "screene") {
     screene();
   } else if (message === "vol") {
@@ -464,11 +797,27 @@ function gotMessage(message, _sender, sendResponse) {
   } else if (message === "voldown") {
     voldown();
   } else if (message === "panelscreen") {
-    panelscreen();
+    searchtoken = false;
+    videotoken = false;
+    if (paneltoken === false) {
+      panelscreen();
+    }
+  } else if (message === "searchscreen") {
+    paneltoken = false;
+    videotoken = false;
+    if (searchtoken === false) {
+      searchscreen();
+    }
   } else if (message === "videoscreen") {
-    videoscreen();
+    searchtoken = false;
+    paneltoken = false;
+    if (videotoken === false) {
+      videoscreen();
+    }
   } else if (message === "youtube") {
     youtube();
+  } else if (message === "searchselect") {
+    searchselect();
   } else if (message.split(",")[0] == "speed") {
     speed(Number(message.split(",")[1]));
   } else if (message === "sendMeURL") {
@@ -479,6 +828,10 @@ function gotMessage(message, _sender, sendResponse) {
     console.log("Bring it on");
   } else if (message.split(",")[0] == "speedlevel") {
     initvalue = Number(message.split(",")[1]);
+  } else if (message.split(",")[0] == "search") {
+    let searchquery = message.split(",")[1];
+    searchquery = encodeURIComponent(searchquery);
+    youtubesearch(searchquery);
   }
 }
 
