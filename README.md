@@ -15,6 +15,23 @@ Mentors:
 2. Ashish Raj                            (190003013)
 
 ### How to Implement and Use
+To be written once the project is completed and packed
 
 ### Features
 This project allows you to select and navigate through the videos on the home screen, search results screen and the video mode screen. It also allows you to control the youtube video and provides features such as play, pause, volume up, volume down, mute, unmute, next video, previous video, playback rate, captions and even redirects you to the home page if you press the home button. All these features enhance the user experience with the app. The PWA also has a dark mode which can be turned on and off as per your preference.
+
+### Tech Stacks
+This project uses the following packages and languages:
+1. Hyper Text Markup Language (HTML)
+2. Cascading Style Sheets (CSS)
+3. Javascript
+4. NodeJS
+5. ExpressJS
+6. Embedded Javascript Templating (EJS)
+7. Socket.io
+8. Nodemon
+9. Qrious
+10. JSQR
+11. Font Awesome Icons package
+12. Chrome Extension
+13. Progressive Web App (PWA)
