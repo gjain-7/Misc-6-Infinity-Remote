@@ -1,4 +1,4 @@
-const socket = io("http://192.168.2.7:3000");
+const socket = io("http://192.168.1.10:3000");
 socket.emit("new-pwa-user", roomName);
 
 const toggleSwitch = document.querySelector(
@@ -17,10 +17,10 @@ toggleSwitch.addEventListener("change", switchTheme, false);
 function switchTheme(e) {
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("theme", "dark"); //add this
+    localStorage.setItem("theme", "dark");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light"); //add this
+    localStorage.setItem("theme", "light");
   }
 }
 const currentTheme = localStorage.getItem("theme")
@@ -38,23 +38,13 @@ const playbackSpeed = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
 var initvalue = 3;
 var volumelevel = 1;
 var selectcounter = 0;
-var screencounter = false;
+var theatremode = true;
 var playcounter = false;
 var volumecounter = false;
 let rangeSlider = document.getElementById("rs-range-line");
 let rangeBullet = document.getElementById("rs-bullet");
-/*
-function apply(message) {
-  let params = {
-    active: true,
-    currentWindow: true,
-  };
-  chrome.tabs.query(params, gotTab);
-  function gotTab(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, message);
-  }
-}
-*/
+var playlist = true;
+
 function sendsocket(message) {
   socket.emit("popupmessage", message, roomName);
 }
@@ -70,12 +60,18 @@ function receivesocket(message) {
     } else {
       playcounter = false;
     }
+    playlist=message.playlist;
     if (message.firstc == true) {
+      if (message.mute=="M"){
+        volumecounter=false;
+      }
+      else{
+        volumecounter=true;
+      }
       volumelevel = message.volume;
       rangeSlider.value = message.speed * 4 - 1;
       rangeBullet.innerHTML = "x " + playbackSpeed[rangeSlider.value];
     }
-
     videoscreen();
     if (message.firstc == false) {
       sendsocket(`volume,${volumelevel}`);
@@ -90,7 +86,6 @@ function receivesocket(message) {
 }
 
 socket.on("contentmessage", (message) => {
-  console.log("recieved ",message)
   receivesocket(message);
 });
 
@@ -99,13 +94,13 @@ var rightid;
 var leftid;
 var upid;
 
-document.getElementById("home").addEventListener("click", youtube);
+document.getElementById("p13").addEventListener("click", search);
 document.getElementById("p").addEventListener("click", changeback);
 document.getElementById("p1").addEventListener("click", change);
 document.getElementById("p6").addEventListener("click", stepfor);
 document.getElementById("p7").addEventListener("click", vol);
 document.getElementById("p8").addEventListener("click", stepback);
-document.getElementById("p9").addEventListener("click", search);
+document.getElementById("p9").addEventListener("click", youtube);
 document.getElementById("p10").addEventListener("click", screene);
 document.getElementById("p11").addEventListener("click", caption);
 document.querySelectorAll("input")[1].addEventListener("input", speed);
@@ -131,15 +126,18 @@ document.addEventListener("mouseup", function () {
   clearInterval(upid);
   clearInterval(rightid);
 });
-document.getElementById("p").className = "disabled fas fa-arrow-left fa-3x";
+document.getElementById("p").className = "disabled fas fa-arrow-left fa-2x";
 
 function panelscreen() {
+  console.log("Panel Screen Activated");
   sendsocket("panelscreen");
   document.getElementById("p1").innerHTML = "Select";
   document.getElementById("p2").innerHTML =
     "<i class='enabled fas fa-chevron-left fa-2x'></i>";
+  document.getElementById("p2").className = "button1 left";
   document.getElementById("p3").innerHTML =
     "<i class='enabled fas fa-chevron-right fa-2x'></i>";
+  document.getElementById("p3").className = "button1 right";
   document.getElementById("p4").innerHTML =
     "<i class='enabled fas fa-chevron-up fa-2x'></i>";
   document.getElementById("p5").innerHTML =
@@ -154,8 +152,8 @@ function panelscreen() {
     "<i class='disabled fas fa-step-backward fa-2x'></i>";
   document.getElementById("p8").className = "button2 step-backward";
   document.getElementById("p9").innerHTML =
-    "<i class='enabled fas fa-search fa-2x'></i>";
-  document.getElementById("p9").className = "button1 search";
+    "<i class='enabled fas fa-home fa-2x'></i>";
+  document.getElementById("p9").className = "button1 home";
   document.getElementById("p10").innerHTML =
     "<i class='disabled fas fa-expand fa-2x'></i>";
   document.getElementById("p10").className = "button2 expand";
@@ -166,28 +164,26 @@ function panelscreen() {
 }
 
 function videoscreen() {
+  console.log("Video Screen Activated");
   sendsocket("videoscreen");
-  document.getElementById("p").className = "enabled fas fa-arrow-left fa-3x";
-  if (playcounter == true) {
-    document.getElementById("p1").innerHTML =
-      "<i class='enabled fas fa-play fa-2x'></i>";
-  } else {
-    document.getElementById("p1").innerHTML =
-      "<i class='enabled fas fa-pause fa-2x'></i>";
-  }
+  theatremode=true;
+  document.getElementById("p").className = "enabled fas fa-arrow-left fa-2x";
   document.getElementById("p2").innerHTML =
     "<i class='enabled fas fa-backward fa-2x'></i>";
+  document.getElementById("p2").className = "button1 left";
   document.getElementById("p3").innerHTML =
     "<i class='enabled fas fa-forward fa-2x'></i>";
-  document.getElementById("p4").innerHTML =
-    "<i class='enabled fas fa-volume-up fa-2x'></i>";
-  document.getElementById("p5").innerHTML =
-    "<i class='enabled fas fa-volume-down fa-2x'></i>";
+  document.getElementById("p3").className = "button1 right";
   document.getElementById("p6").innerHTML =
     "<i class='enabled fas fa-step-forward fa-2x'></i>";
   document.getElementById("p6").className = "button1 step-forward";
-  document.getElementById("p7").innerHTML =
+  if (volumecounter===false){
+    document.getElementById("p7").innerHTML =
     "<i class='enabled fas fa-volume-mute fa-2x'></i>";
+  }else{
+    document.getElementById("p7").innerHTML =
+    "<i class='enabled fas fa-volume-up fa-2x'></i>";
+  }
   document.getElementById("p7").className = "button1 mute";
   document.getElementById("p8").innerHTML =
     "<i class='enabled fas fa-step-backward fa-2x'></i>";
@@ -195,26 +191,29 @@ function videoscreen() {
   document.getElementById("p11").innerHTML =
     "<i class='enabled fas fa-closed-captioning fa-2x'></i>";
   document.getElementById("p11").className = "button1 caption";
-  if (screencounter == false) {
-    document.getElementById("p9").innerHTML =
-      "<i class='enabled fas fa-search fa-2x'></i>";
-    document.getElementById("p9").className = "button1 search";
-    document.getElementById("p10").innerHTML =
-      "<i class='enabled fas fa-expand fa-2x'></i>";
-    document.getElementById("p10").className = "button1 expand";
+  document.getElementById("p9").innerHTML =
+    "<i class='enabled fas fa-home fa-2x'></i>";
+  document.getElementById("p9").className = "button1 home";
+  if (playcounter == true) {
+    document.getElementById("p1").innerHTML =
+      "<i class='enabled fas fa-play fa-2x'></i>";
   } else {
-    document.getElementById("p9").innerHTML =
-      "<i class='disabled fas fa-search fa-2x'></i>";
-    document.getElementById("p9").className = "button2 search";
-    document.getElementById("p10").innerHTML =
-      "<i class='enabled fas fa-compress fa-2x'></i>";
-    document.getElementById("p10").className = "button1 expand";
+    document.getElementById("p1").innerHTML =
+      "<i class='enabled fas fa-pause fa-2x'></i>";
   }
+  document.getElementById("p4").innerHTML =
+    "<i class='enabled fas fa-volume-up fa-2x'></i>";
+  document.getElementById("p5").innerHTML =
+    "<i class='enabled fas fa-volume-down fa-2x'></i>";
+  document.getElementById("p10").innerHTML =
+    "<i class='enabled fas fa-compress fa-2x'></i>";
+  document.getElementById("p10").className = "button1 expand";
   document.getElementsByClassName("container")[0].style.display = "flex";
 }
 function searchscreen() {
+  console.log("Search Screen Activated");
   sendsocket("searchscreen");
-  document.getElementById("p").className = "enabled fas fa-arrow-left fa-3x";
+  document.getElementById("p").className = "enabled fas fa-arrow-left fa-2x";
   document.getElementById("p1").innerHTML = "Select";
   document.getElementById("p2").innerHTML =
     "<i class='disabled fas fa-chevron-left fa-2x'></i>";
@@ -236,8 +235,8 @@ function searchscreen() {
     "<i class='disabled fas fa-step-backward fa-2x'></i>";
   document.getElementById("p8").className = "button2 step-backward";
   document.getElementById("p9").innerHTML =
-    "<i class='enabled fas fa-search fa-2x'></i>";
-  document.getElementById("p9").className = "button1 search";
+    "<i class='enabled fas fa-home fa-2x'></i>";
+  document.getElementById("p9").className = "button1 home";
   document.getElementById("p10").innerHTML =
     "<i class='disabled fas fa-expand fa-2x'></i>";
   document.getElementById("p10").className = "button2 expand";
@@ -248,15 +247,21 @@ function searchscreen() {
 }
 
 function change() {
+  console.log("Select Button clicked");
   if (selectcounter == 1) {
-    sendsocket("changeplay");
-    playcounter = !playcounter;
-    if (playcounter == true) {
-      document.getElementById("p1").innerHTML =
-        "<i class='enabled fas fa-play fa-2x'></i>";
+    if (theatremode == true) {
+      sendsocket("changeplay");
+      playcounter = !playcounter;
+      if (playcounter == true) {
+        document.getElementById("p1").innerHTML =
+          "<i class='enabled fas fa-play fa-2x'></i>";
+      } else {
+        document.getElementById("p1").innerHTML =
+          "<i class='enabled fas fa-pause fa-2x'></i>";
+      }
     } else {
-      document.getElementById("p1").innerHTML =
-        "<i class='enabled fas fa-pause fa-2x'></i>";
+      sendsocket("searchselect");
+      theatremode = true;
     }
   } else if (selectcounter == 0) {
     sendsocket("changeselect");
@@ -266,52 +271,104 @@ function change() {
 }
 
 function changeback() {
+  console.log("Back Button clicked");
   sendsocket("changeback");
 }
 
 function screene() {
+  console.log("Screen Button clicked");
   if (selectcounter == 1) {
-    screencounter = !screencounter;
+    theatremode = !theatremode;
     sendsocket("screene");
-    if (screencounter == true) {
+    if (theatremode == true) {
+      if (playcounter == true) {
+        document.getElementById("p1").innerHTML =
+          "<i class='enabled fas fa-play fa-2x'></i>";
+      } else {
+        document.getElementById("p1").innerHTML =
+          "<i class='enabled fas fa-pause fa-2x'></i>";
+      }
+      document.getElementById("p4").innerHTML =
+        "<i class='enabled fas fa-volume-up fa-2x'></i>";
+      document.getElementById("p5").innerHTML =
+        "<i class='enabled fas fa-volume-down fa-2x'></i>";
       document.getElementById("p10").innerHTML =
         "<i class='enabled fas fa-compress fa-2x'></i>";
-      document.getElementById("p9").innerHTML =
-        "<i class='disabled fas fa-search fa-2x'></i>";
-      document.getElementById("p9").className = "button2 search";
+      document.getElementById("p10").className = "button1 expand";
     } else {
+      document.getElementById("p1").innerHTML = "Select";
+      document.getElementById("p4").innerHTML =
+        "<i class='enabled fas fa-chevron-up fa-2x'></i>";
+      document.getElementById("p5").innerHTML =
+        "<i class='enabled fas fa-chevron-down fa-2x'></i>";
       document.getElementById("p10").innerHTML =
         "<i class='enabled fas fa-expand fa-2x'></i>";
-      document.getElementById("p9").innerHTML =
-        "<i class='enabled fas fa-search fa-2x'></i>";
-      document.getElementById("p9").className = "button1 search";
+      document.getElementById("p10").className = "button1 expand";
+      document.getElementById("p2").innerHTML =
+      "<i class='enabled fas fa-chevron-left fa-2x'></i>";
+      document.getElementById("p3").innerHTML =
+      "<i class='enabled fas fa-chevron-right fa-2x'></i>";
+      if (playlist===true){
+        document.getElementById("p2").innerHTML =
+        "<i class='enabled fas fa-chevron-left fa-2x'></i>";
+        document.getElementById("p3").innerHTML =
+        "<i class='enabled fas fa-chevron-right fa-2x'></i>";
+        document.getElementById("p2").className = "button1 left";
+        document.getElementById("p3").className = "button1 right";
+
+      }
+      else{
+        document.getElementById("p2").innerHTML =
+        "<i class='disabled fas fa-chevron-left fa-2x'></i>";
+        document.getElementById("p3").innerHTML =
+        "<i class='disabled fas fa-chevron-right fa-2x'></i>";
+        document.getElementById("p2").className = "button2 left";
+        document.getElementById("p3").className = "button2 right";
+      }
     }
   }
 }
 
 function stepback() {
+  console.log("Step Back Button clicked");
   if (selectcounter == 1) {
     sendsocket("stepback");
   }
 }
 function stepfor() {
+  console.log("Step Forward button clicked");
   if (selectcounter == 1) {
     sendsocket("stepfor");
   }
 }
 
 function leftbutton() {
+  console.log("Left Button clicked");
   if (selectcounter != 2) {
-    sendsocket("leftbutton");
+    if (theatremode == true || selectcounter == 0) {
+      sendsocket("leftbutton");
+    } else {
+      if (playlist===true){
+        sendsocket("backward");
+      }
+    }
   }
 }
 function rightbutton() {
+  console.log("Right Button clicked");
   if (selectcounter != 2) {
-    sendsocket("rightbutton");
+    if (theatremode == true || selectcounter == 0) {
+      sendsocket("rightbutton");
+    } else {
+      if (playlist===true){
+        sendsocket("forward");
+      }
+    }
   }
 }
 
 function vol() {
+  console.log("Mute/Unmute Button clicked");
   if (selectcounter == 1) {
     sendsocket("vol");
     volumecounter = !volumecounter;
@@ -326,7 +383,8 @@ function vol() {
 }
 
 function upbutton() {
-  if (selectcounter == 1) {
+  console.log("Up Button clicked");
+  if (selectcounter == 1 && theatremode == true) {
     sendsocket("volup");
     volumelevel += 0.1;
     volumelevel = Math.min(1, volumelevel);
@@ -335,7 +393,8 @@ function upbutton() {
   }
 }
 function downbutton() {
-  if (selectcounter == 1) {
+  console.log("Down Button clicked");
+  if (selectcounter == 1 && theatremode == true) {
     sendsocket("voldown");
     volumelevel -= 0.1;
     volumelevel = Math.max(0, volumelevel);
@@ -345,15 +404,20 @@ function downbutton() {
 }
 
 function caption() {
+  console.log("Closed Captions clicked");
   if (selectcounter == 1) {
     sendsocket("caption");
   }
 }
 
 function search() {
-  if (screencounter == false) {
-    sendsocket("search");
+  let x = document.getElementById("searchbox").value;
+  if (x === "") {
+    //do nothing
+  } else {
+    sendsocket(`search,${x}`);
   }
+  document.getElementById("searchbox").value = "";
 }
 
 function youtube() {
@@ -361,9 +425,9 @@ function youtube() {
 }
 
 function speed() {
+  console.log("Playback speed set");
   rangeBullet.innerHTML = "x " + playbackSpeed[rangeSlider.value];
   sendsocket(`speed,${rangeSlider.value}`);
-  console.log("doing great");
   initvalue = rangeSlider.value;
 }
 
