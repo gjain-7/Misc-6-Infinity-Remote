@@ -1,0 +1,14 @@
+{
+  "name": "extensionss",
+  "version": "3.0.0",
+  "description": "",
+  "main": "content.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "qrious": "^4.0.2"
+  }
+}
