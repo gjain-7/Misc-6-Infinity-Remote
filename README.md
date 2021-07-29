@@ -17,7 +17,7 @@ Mentors:
 ### How to Implement and Use
 To be written once the project is completed and packed
 >**_Temporary :-_**
-> 1. Load the chrome extension on Desktop from the repository
+> 1. Load the chrome extension on Desktop from the repository (Frontend)
 > 2. Open https://mysterious-anchorage-10324.herokuapp.com from mobile browser
 > 3. Enjoy!
 
