@@ -14,15 +14,16 @@
 9. Made a few error pages.
 10. Used an icon from Google as remote icon.
 11. Implemented PWA (UI still to be designed)
+12. Implemented the server using Heroku (https://mysterious-anchorage-10324.herokuapp.com)
+
 
 ### How to implement: 
 Try downloading the whole folder named Project, and then in the same folder, applying "npm install", followed by load unpacking the extension in chrome://extensions. Open youtube on a tab, then initiate the server using "node server.js" in the command line, followed by opening "mainpage.html". Required: You need to enable this in your chrome - chrome://flags/#extensions-on-chrome-urls
 
 ### Objectives To do (as per priority):
-1. Implementing UI of PWA scanner.
-2. Implementing the server using Heroku/Firebase
-3. Fixing Errors
-4. Need to make presentation and finalize the project
+1. Improving UI of PWA scanner.
+2. Fixing Errors
+3. Need to make presentation and finalize the project
 
 ### Difficulties being faced:
 1. Press and hold feature for navigation buttons 
