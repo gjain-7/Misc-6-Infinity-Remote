@@ -1,5 +1,5 @@
 console.log("background initiated");
-const socket = io("http://localhost:3000");
+const socket = io("https://mysterious-anchorage-10324.herokuapp.com");
 socket.on("connect", function () {
   console.log("content initiated",socket.id);
   chrome.storage.local.set({ roomName: socket.id });
