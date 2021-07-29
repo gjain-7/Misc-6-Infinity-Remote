@@ -16,6 +16,10 @@ Mentors:
 
 ### How to Implement and Use
 To be written once the project is completed and packed
+>**_Temporary :-_**
+> 1. Load the chrome extension on Desktop from the repository
+> 2. Open https://mysterious-anchorage-10324.herokuapp.com from mobile browser
+> 3. Enjoy!
 
 ### Features
 This project allows you to select and navigate through the videos on the home screen, search results screen and the video mode screen. It also allows you to control the youtube video and provides features such as play, pause, volume up, volume down, mute, unmute, next video, previous video, playback rate, captions and even redirects you to the home page if you press the home button. All these features enhance the user experience with the app. The PWA also has a dark mode which can be turned on and off as per your preference.
