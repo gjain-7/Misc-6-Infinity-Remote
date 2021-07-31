@@ -1,0 +1,38 @@
+body {
+  background-color: var(--bg-color);
+  font-family:  Geneva, Verdana, sans-serif;
+}
+
+div {
+  margin: auto;
+  text-align: center;
+}
+img {
+  width: 25vw;
+  height: 25vw;
+  margin-top: 50vw;
+}
+p{
+    color:var(--text-color);
+    position: relative;
+    text-align: center;
+    top: 45vw;
+}
+form{
+    display: none;
+}
+progress{
+    position: relative;
+    top: 10vw;
+    width: 50vw;
+    /* display: none; */
+}
+:root {
+  --bg-color: rgba(245, 245, 245, 0.74);
+  --text-color: black;
+}
+
+[data-theme="dark"] {
+  --bg-color: #263238;
+  --text-color: white;
+}

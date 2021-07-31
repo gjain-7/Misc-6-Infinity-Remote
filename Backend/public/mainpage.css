@@ -1,8 +1,7 @@
+
 body {
   background-color: var(--bg-color);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  min-width: 300px;
-  min-height: 600px;
 }
 
 .heading {
@@ -23,7 +22,7 @@ body {
 }
 .fa-arrow-left {
   position: absolute;
-  top: 9vh;
+  top: 16vw;
   left: 5vw;
   cursor: pointer;
   color: var(--icon-color);
@@ -50,8 +49,8 @@ body {
 .button1 {
   background-color: var(--button-bg-color);
   position: absolute;
-  height: 12vh;
-  width: 20vw;
+  height: 20vw;
+  width: 22vw;
   font-size: 4vw;
   border-radius: 20%;
   border-width: 1vw;
@@ -76,8 +75,8 @@ body {
 .button2 {
   background-color: var(--button-bg-color);
   position: absolute;
-  height: 12vh;
-  width: 20vw;
+  height: 20vw;
+  width: 22vw;
   font-size: 4vw;
   border-radius: 20%;
   border-width: 1vw;
@@ -97,64 +96,64 @@ body {
 
 .fa-search {
   position: absolute;
-  top: 8vh;
+  top: 15vw;
   left: 88vw;
   cursor: pointer;
   color: var(--icon-color);
 }
 
 .select {
-  top: 29vh;
-  left: 40vw;
+  top: 50vw;
+  left: 39vw;
 
   color: var(--icon-color);
   font-weight: bold;
 }
 
 .left {
-  top: 29vh;
-  left: 18vw;
+  top: 50vw;
+  left: 15vw;
 }
 
 .right {
-  top: 29vh;
-  left: 62vw;
+  top: 50vw;
+  left: 63vw;
 }
 
 .above {
-  top: 16vh;
-  left: 40vw;
+  top: 29vw;
+  left: 39vw;
 }
 
 .below {
-  top: 42vh;
-  left: 40vw;
+  top: 71vw;
+  left: 39vw;
 }
 
 .mute {
-  top: 57vh;
-  left: 40vw;
+  top: 97vw;
+  left: 39vw;
 }
 .step-backward {
-  top: 57vh;
-  left: 18vw;
+  top: 97vw;
+  left: 15vw;
 }
 .step-forward {
-  top: 57vh;
-  left: 62vw;
+  top: 97vw;
+  left: 63vw;
 }
 .home {
-  top: 70vh;
-  left: 18vw;
+  top: 118vw;
+  left: 15vw;
 }
 .expand {
-  top: 70vh;
-  left: 62vw;
+  top: 118vw;
+  left: 63vw;
 }
 
 .caption {
-  top: 70vh;
-  left: 40vw;
+  top: 118vw;
+  left: 39vw;
 }
 
 .theme-switch {
@@ -228,7 +227,7 @@ input:checked + .slider:before {
 }
 .container {
   position: absolute;
-  top: 83vh;
+  top: 145vw;
   padding-bottom: 10vw;
   align-items: center;
   justify-content: center;
@@ -315,10 +314,10 @@ input:checked + .slider:before {
 
 .searchbox {
   position: absolute;
-  top: 8vh;
+  top: 15vw;
   left: 15vw;
   width: 67vw;
-  height: 4.5vh;
+  height: 7vw;
   border-radius: 1vw;
   padding-left: 10px;
   font-size: 20px;
