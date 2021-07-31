@@ -1,15 +1,16 @@
 body {
-    background-color: dodgerblue;
+    background-color: var(--bg-color);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     align-items: center;
     justify-content: center;
     display: flex;
+    color:var(--text-color);
 }
 .loading span{
     width: 25px;
     height: 25px;
     margin: 0 5px;
-    background-color: black;
+    background-color: var(--text-color);
     border-radius: 50%;
     display: inline-block;
     animation-name: dots;
@@ -33,3 +34,13 @@ body {
 input{
     display: none;
 }
+:root {
+    /* --bg-color: #00bfff; */
+    --bg-color: #87e6fc;
+    --text-color: black;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #03254c;
+    --text-color: white;
+  }
