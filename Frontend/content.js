@@ -495,7 +495,17 @@ function videopanelscreen() {
     playlist_panel_num = 0;
     if (playlist_panels.length != 0) NumOfPanels = playlist_panels.length;
   }
-  return autoplayed;
+  let lastUrl= this.document.location;
+  new MutationObserver(() => {
+    const url = location.href;
+    if (url !== lastUrl) {
+      lastUrl = url;
+      console.log("autoplayed");
+      autoplayed();
+      sendfirstinfo();
+    }
+  }).observe(document, { subtree: true, childList: true });
+
 }
 function volup() {
   console.log("Volume has been increased");
@@ -523,7 +533,7 @@ function screene() {
   });
   document.dispatchEvent(e);
   if (videopaneltoken == true) {
-    autoplay=videopanelscreen();
+    videopanelscreen();
   }
   videopaneltoken = false;
 }
@@ -824,14 +834,6 @@ function gotMessage(message, _sender, sendResponse) {
     youtubesearch(searchquery);
   }
 }
-new MutationObserver(() => {
-  const url = location.href;
-  if (url !== lastUrl) {
-    lastUrl = url;
-    console.log("autoplayed");
-    autoplay();
-    sendfirstinfo();
-  }
-}).observe(document, { subtree: true, childList: true });
+
 var d = new Date();
 console.log("Content Scripts Working " + d.toLocaleTimeString());
