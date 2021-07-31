@@ -60,13 +60,12 @@ function receivesocket(message) {
     } else {
       playcounter = false;
     }
-    playlist=message.playlist;
+    playlist = message.playlist;
     if (message.firstc == true) {
-      if (message.mute=="M"){
-        volumecounter=false;
-      }
-      else{
-        volumecounter=true;
+      if (message.mute == "M") {
+        volumecounter = false;
+      } else {
+        volumecounter = true;
       }
       volumelevel = message.volume;
       rangeSlider.value = message.speed * 4 - 1;
@@ -166,7 +165,7 @@ function panelscreen() {
 function videoscreen() {
   console.log("Video Screen Activated");
   sendsocket("videoscreen");
-  theatremode=true;
+  theatremode = true;
   document.getElementById("p").className = "enabled fas fa-arrow-left fa-2x";
   document.getElementById("p2").innerHTML =
     "<i class='enabled fas fa-backward fa-2x'></i>";
@@ -177,12 +176,12 @@ function videoscreen() {
   document.getElementById("p6").innerHTML =
     "<i class='enabled fas fa-step-forward fa-2x'></i>";
   document.getElementById("p6").className = "button1 step-forward";
-  if (volumecounter===false){
+  if (volumecounter === false) {
     document.getElementById("p7").innerHTML =
-    "<i class='enabled fas fa-volume-mute fa-2x'></i>";
-  }else{
+      "<i class='enabled fas fa-volume-mute fa-2x'></i>";
+  } else {
     document.getElementById("p7").innerHTML =
-    "<i class='enabled fas fa-volume-up fa-2x'></i>";
+      "<i class='enabled fas fa-volume-up fa-2x'></i>";
   }
   document.getElementById("p7").className = "button1 mute";
   document.getElementById("p8").innerHTML =
@@ -295,6 +294,12 @@ function screene() {
       document.getElementById("p10").innerHTML =
         "<i class='enabled fas fa-compress fa-2x'></i>";
       document.getElementById("p10").className = "button1 expand";
+      document.getElementById("p2").innerHTML =
+        "<i class='enabled fas fa-backward fa-2x'></i>";
+      document.getElementById("p2").className = "button1 left";
+      document.getElementById("p3").innerHTML =
+        "<i class='enabled fas fa-forward fa-2x'></i>";
+      document.getElementById("p3").className = "button1 right";
     } else {
       document.getElementById("p1").innerHTML = "Select";
       document.getElementById("p4").innerHTML =
@@ -305,23 +310,21 @@ function screene() {
         "<i class='enabled fas fa-expand fa-2x'></i>";
       document.getElementById("p10").className = "button1 expand";
       document.getElementById("p2").innerHTML =
-      "<i class='enabled fas fa-chevron-left fa-2x'></i>";
-      document.getElementById("p3").innerHTML =
-      "<i class='enabled fas fa-chevron-right fa-2x'></i>";
-      if (playlist===true){
-        document.getElementById("p2").innerHTML =
         "<i class='enabled fas fa-chevron-left fa-2x'></i>";
-        document.getElementById("p3").innerHTML =
+      document.getElementById("p3").innerHTML =
         "<i class='enabled fas fa-chevron-right fa-2x'></i>";
+      if (playlist === true) {
+        document.getElementById("p2").innerHTML =
+          "<i class='enabled fas fa-chevron-left fa-2x'></i>";
+        document.getElementById("p3").innerHTML =
+          "<i class='enabled fas fa-chevron-right fa-2x'></i>";
         document.getElementById("p2").className = "button1 left";
         document.getElementById("p3").className = "button1 right";
-
-      }
-      else{
+      } else {
         document.getElementById("p2").innerHTML =
-        "<i class='disabled fas fa-chevron-left fa-2x'></i>";
+          "<i class='disabled fas fa-chevron-left fa-2x'></i>";
         document.getElementById("p3").innerHTML =
-        "<i class='disabled fas fa-chevron-right fa-2x'></i>";
+          "<i class='disabled fas fa-chevron-right fa-2x'></i>";
         document.getElementById("p2").className = "button2 left";
         document.getElementById("p3").className = "button2 right";
       }
@@ -348,7 +351,7 @@ function leftbutton() {
     if (theatremode == true || selectcounter == 0) {
       sendsocket("leftbutton");
     } else {
-      if (playlist===true){
+      if (playlist === true) {
         sendsocket("backward");
       }
     }
@@ -360,7 +363,7 @@ function rightbutton() {
     if (theatremode == true || selectcounter == 0) {
       sendsocket("rightbutton");
     } else {
-      if (playlist===true){
+      if (playlist === true) {
         sendsocket("forward");
       }
     }
