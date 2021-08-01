@@ -1,58 +1,43 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head> </head>
-  <body>
-    <h2>Infinity Remote</h2>
-    <p style="font-size: x-large;">Scan this QR-code with the <u style="color: blue;">Infinity Remote </u>website</p>
-    <canvas id="qr-code"></canvas>
-    <script src="node_modules/qrious/dist/qrious.js"></script>
-    <script src="popup.js"></script>
-  </body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head> </head>
-<style>
-  a {
-    cursor: pointer;
-  }
-
-  a:link {
-    color: blue;
-  }
-
-  a:visited {
-    color: #6e3b9c;
-  }
-
-  a:active {
-    color: red;
-  }
-
-  p {
-    font-size: large;
-  }
-
-  button {
-    color: dodgerblue;
-    border-radius: 3px;
-    display: none;
-  }
-  h2{
-    font-size: larger;
-  }
-</style>
-
-<body>
-  <h2>Infinity Remote</h2>
-  <p>Scan this QR-code with the <a>Infinity Remote </a>website.</p>
-  <canvas id="qr-code"></canvas>
-  <script src="node_modules/qrious/dist/qrious.js"></script>
-  <script src="popup.js"></script>
-  <button>Back</button>
-</body>
-
+  <head> </head>
+  <style>
+    h2{
+      padding-bottom: 5px;
+    }
+    a{
+      cursor: pointer;
+      color: blue;
+      text-decoration: underline;
+    }
+    a:link {
+      color: blue;
+    }
+    a:visited {
+      color: #6e3b9c;
+    }
+    a:active {
+      color: red;
+    }
+    p{
+      font-size: medium;
+      display: inline;
+    }
+    button{
+      border-radius: 3px;
+      visibility: hidden;
+    }
+    canvas{
+      margin: 10px 0px 5px 0px;
+    }
+  </style>
+  <body>
+    <h2>Infinity Remote</h2>
+    <div><p>Scan this QR-code with the <a>Infinity Remote </a>website.</p></div>
+    <div></div>
+    <div><canvas id="qr-code"></canvas></div>
+    <button >Back</button>
+    <script src="qrious.min.js"></script>
+    <script src="popup.js"></script>
+  </body>
 </html>
