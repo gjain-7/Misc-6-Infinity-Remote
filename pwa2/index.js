@@ -38,7 +38,7 @@ qrcode1.callback = (res) => {
 // btnScanQR.onclick = () => {
     // alert(navigator.mediaDevices)
     function openScan(){
-      document.body.style.backgroundColor='grey';
+      document.body.style.backgroundColor='dodgerblue';
     navigator.mediaDevices
       .getUserMedia({ video: { facingMode: "environment" } })
       .then(function (stream) {

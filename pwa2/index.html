@@ -17,28 +17,28 @@
   </head>
   <body>
     <div id="container">
-      <h1 id="title">Infinity Remote</h1>
-      <!-- <h1>QR Code Scanner</h1> -->
+      <h2 id="title">Infinity Remote</h2>
+      <p id="inst"> Click on the extension icon and scan the <strong>QR-Code</strong>.</p>
 
-      <a id="btn-scan-qr">
-        <div id="insbox">
-        Select <b>Allow</b> and scan the qrcode to open the remote.
+       <a id="btn-scan-qr">
+        <!--<div id="insbox">
+      Click on the extension icon and scan the <strong>QR-Code</strong>. -->
     
-          <!-- <img
+           <!-- <img
             src="https://uploads.sitepoint.com/wp-content/uploads/2017/07/1499401426qr_icon.svg"
-          /> -->
+          /> 
         </div>
         <button id="clicktoscan">
           <div class="color" >Click here to scan</div>
-        </button>
-      </a>
+        </button> -->
+      </a> 
 
-      <canvas hidden="" id="qr-canvas"></canvas>
-
+      
       <div id="qr-result" hidden="">
         <b>Data:</b> <span id="outputData"></span>
       </div>
     </div>
+    <canvas hidden="" id="qr-canvas"></canvas>
     <form action="http://localhost:3000/mainpage" method="post" hidden="true"> <!--Location of /mainpage-->
       <input type="text" name="room">
       <button type="submit"></button>
