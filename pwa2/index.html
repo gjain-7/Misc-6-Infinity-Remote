@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Document</title>
+    <meta name="theme-color" content="#4dbaa8" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="/example.png" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <h1 id="title">Infinity Remote</h1>
+      <!-- <h1>QR Code Scanner</h1> -->
+
+      <a id="btn-scan-qr">
+        <div id="insbox">
+        Select <b>Allow</b> and scan the qrcode to open the remote.
+    
+          <!-- <img
+            src="https://uploads.sitepoint.com/wp-content/uploads/2017/07/1499401426qr_icon.svg"
+          /> -->
+        </div>
+        <button id="clicktoscan">
+          <div class="color" >Click here to scan</div>
+        </button>
+      </a>
+
+      <canvas hidden="" id="qr-canvas"></canvas>
+
+      <div id="qr-result" hidden="">
+        <b>Data:</b> <span id="outputData"></span>
+      </div>
+    </div>
+    <form action="http://localhost:3000/mainpage" method="post" hidden="true"> <!--Location of /mainpage-->
+      <input type="text" name="room">
+      <button type="submit"></button>
+    </form>
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
