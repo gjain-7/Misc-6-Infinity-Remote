@@ -1,29 +1,30 @@
 # Misc-6-Infinity-Remote
 
-### Update Friday, 23/07/2021:
+### Update Monday, 02/08/2021:
 
 ### Objectives Completed:
-1. Implemented UI for the remote
-2. Implemented features for movement of highlighter (including carrot down menu) on panelscreen 
-3. Implementing authorisation/ ids to enforce a 1 to 1 connection between remote and extension, and changing the qrcode depending upon the id
-4. Implemented features for pausing, playing, volume, mute, forward, step forward, captions and full screen (although not working now after connecting with socket).
-5. The html page now works fine after socket is used (Buttons not getting collected at the top of screen)
-6. The state of html page depends on the url of site running
-7. Search functionality implemented.
-8. Video Navigation functionality implemented.
-9. Made a few error pages.
-10. Used an icon from Google as remote icon.
-11. Implemented PWA (UI still to be designed)
-12. Implemented the server using Heroku (https://mysterious-anchorage-10324.herokuapp.com)
+1. Implemented UI for the Web App (PWA).
+2. Implemented Navigation on Searchscreen, Panelscreen and Videoscreen. (Including carrot buttons)
+3. Enforced a 1-1 connection between the Remote and the Extension. (Using Socket)
+4. Implemented QR Code.
+5. Implemented Video Control Features.
+6. Implemented Error Pages for better User Experience.
+7. Implemented PWA.
+8. Implemented Server using Heroku (https://mysterious-anchorage-10324.herokuapp.com)
+9. Created Icon for the PWA.
+10. Skipped Ads
 
 
 ### How to implement: 
-Try downloading the whole folder named Project, and then in the same folder, applying "npm install", followed by load unpacking the extension in chrome://extensions. Open youtube on a tab, then initiate the server using "node server.js" in the command line, followed by opening "mainpage.html". Required: You need to enable this in your chrome - chrome://flags/#extensions-on-chrome-urls
+In order to implement you need to do the following steps:
+1. Download the Frontend Folder and "Load Unpack" it in the chrome://extensions.
+2. Open youtube on the browser.
+3. Follow the instructions.
+
 
 ### Objectives To do (as per priority):
-1. Improving UI of PWA scanner.
-2. Fixing Errors
-3. Need to make presentation and finalize the project
+1. Fixing Errors
+2. Need to make presentation and finalize the project
 
 ### Difficulties being faced:
 1. Press and hold feature for navigation buttons 
