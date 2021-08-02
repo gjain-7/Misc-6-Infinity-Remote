@@ -1,7 +1,7 @@
 # Misc-6_Infinity-Remote
 
 ### Description
-This project gives you an extension and a Progressive Web App (PWA) which allows you to control youtube on your browser from your smartphone. It enforces a 1 to 1 connection between the browser extension and the PWA. The extension gets connected to the PWA using a QR Code which has to be scanned using the built in QR Code Scanner in the PWA. This will land you on the Infinity Remote page that allows you to control the youtube.
+This Project gives you a Chrome Extension and a Progressive Web App (PWA) allowing you to control Youtube on your Desktop Browser from your Mobile's Browser. It enforces a 1-1 connection between the Browser Extension and the PWA. The Extension gets connected to the PWA using a QR Code which has to be scanned using the built-in QR Code Scanner in the PWA. This will land you on the Infinity Remote page that allows you to control the Youtube. Proper Instuctions / Icons helps the User control the Utility.
 
 ### [Developer Details](https://docs.google.com/document/d/1REjqQN7qbH5l_CglM1tw-Q24cmVuz2DY5YAoGSE6kVo/edit?usp=sharing)
 Team Members:
@@ -20,12 +20,11 @@ Mentors:
 
 
 ### Features
-1. Screen Navigation
-2. Video Controls
-3. Dark Mode as per your preference
+1. Screen Navigation - On the Home screen, Search Results screen, Video Mode screen
+2. Video Controls - Such as Play, Pause, Volume Up-Down, Mute-Unmute, Captions, Playback Rate, Previous Video and Next Video.
+3. Dark Mode as per your convenience
 4. Skip Ads
 
-This project allows you to select and navigate through the videos on the home screen, search results screen and the video mode screen. It also allows you to control the youtube video and provides features such as play, pause, volume up, volume down, mute, unmute, next video, previous video, playback rate, captions and even redirects you to the home page if you press the home button. All these features enhance the user experience with the app. The PWA also has a dark mode which can be turned on and off as per your preference.
 
 ### Tech Stacks/ Packages
 This project uses the following packages and languages:
