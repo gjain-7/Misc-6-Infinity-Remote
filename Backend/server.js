@@ -14,6 +14,9 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
+  res.render("welcome");
+});
+app.get("/qr-scanner", (req, res) => {
   res.render("index" /*,{ rooms: rooms } */); //scanner nishit
 });
 
@@ -22,6 +25,12 @@ app.get("/invalid", (req, res) => {
 });
 app.get("/error", (req, res) => {
   res.render("error");
+});
+app.get("/connecting", (req, res) => {
+  res.render("geterror");
+});
+app.get("/mainpage", (req, res) => {
+  res.render("geterror");
 });
 
 app.post("/connecting", (req, res) => {
@@ -33,7 +42,7 @@ app.post("/mainpage", (req, res) => {
   console.log("redirecting user to mainpage.html ...");
 });
 
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
 
 io.on("connection", (socket) => {
   console.log(socket.id);
