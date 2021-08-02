@@ -46,5 +46,7 @@ This Project is created during June-July, 2021 under the event IITISoC'21, which
 
 ### UML Diagram
 ![Infinity Remote](https://user-images.githubusercontent.com/79629333/127907474-d9825b0a-fd73-42bf-b4d3-3c5cc319bc86.png)
+![Alt text](https://https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/main/Infinity%20Remote.svg)
+
 
 
