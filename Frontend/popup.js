@@ -25,7 +25,7 @@ function QRcodeofSite() {
 document.querySelector("button").addEventListener("click",QRcodeofExtension);
 function QRcodeofExtension() {
   instruction.innerHTML =
-    "Scan this QR-code with the <a>Infinity Remote</a> website.";
+    "Scan this QR-code with the <a>Infinity Remote</a> website and refresh the page after connection is established.";
     document.querySelector("button").style.visibility= "hidden";
   updatePopup();
   document.querySelector("a").addEventListener("click", QRcodeofSite);
