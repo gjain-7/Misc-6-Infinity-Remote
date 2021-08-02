@@ -1,6 +1,6 @@
 # Misc-6_Infinity-Remote
 
-### About
+### Description
 This project gives you an extension and a Progressive Web App (PWA) which allows you to control youtube on your browser from your smartphone. It enforces a 1 to 1 connection between the browser extension and the PWA. The extension gets connected to the PWA using a QR Code which has to be scanned using the built in QR Code Scanner in the PWA. This will land you on the Infinity Remote page that allows you to control the youtube.
 
 ### [Developer Details](https://docs.google.com/document/d/1REjqQN7qbH5l_CglM1tw-Q24cmVuz2DY5YAoGSE6kVo/edit?usp=sharing)
