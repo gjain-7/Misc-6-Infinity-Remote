@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="connecting.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" type="image/png" href="icon.png">
+    <link rel="shortcut icon" type="image/svg" href="icon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connecting</title>
-    <script src="http://192.168.1.10:3000/socket.io/socket.io.js"></script>
+    <script src="https://infinity-remote.herokuapp.com/socket.io/socket.io.js"></script>
     <script>
         const roomName = "<%= roomName %>";
-        const socket = io("http://192.168.1.10:3000");
+        const socket = io("https://infinity-remote.herokuapp.com/");
         socket.emit("new-pwa-user", roomName);
         console.log(roomName);
         socket.on("Connection Established", ()=>{
