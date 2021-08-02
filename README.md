@@ -1,7 +1,7 @@
 # Misc-6_Infinity-Remote
 
-### Abstract
-This project gives you an extension and a Progressive Web App (PWA) which allows you to control youtube on your browser from your smartphone. It enforces a 1 to 1 connection between the browser extension and the PWA. The extension gets connected to the PWA using a QR Code which has to be scanned using the built in QR Code in the PWA. This will land you on the Infinity Remote page that allows you to control the youtube.
+### About
+This project gives you an extension and a Progressive Web App (PWA) which allows you to control youtube on your browser from your smartphone. It enforces a 1 to 1 connection between the browser extension and the PWA. The extension gets connected to the PWA using a QR Code which has to be scanned using the built in QR Code Scanner in the PWA. This will land you on the Infinity Remote page that allows you to control the youtube.
 
 ### [Developer Details](https://docs.google.com/document/d/1REjqQN7qbH5l_CglM1tw-Q24cmVuz2DY5YAoGSE6kVo/edit?usp=sharing)
 Team Members:
@@ -15,16 +15,19 @@ Mentors:
 2. Ashish Raj                            (190003013)
 
 ### How to Implement and Use
-To be written once the project is completed and packed
->**_Temporary :-_**
-> 1. Load the chrome extension on Desktop from the repository (Frontend)
-> 2. Open https://mysterious-anchorage-10324.herokuapp.com from mobile browser
-> 3. Enjoy!
+1. Download the Frontend folder on your Desktop and load it in [Chrome Extensions](chrome://extensions).
+2. Open [Infinity Remote](https://mysterious-anchorage-10324.herokuapp.com) from your Mobile browser.
+
 
 ### Features
+1. Screen Navigation
+2. Video Controls
+3. Dark Mode as per your preference
+4. Skip Ads
+
 This project allows you to select and navigate through the videos on the home screen, search results screen and the video mode screen. It also allows you to control the youtube video and provides features such as play, pause, volume up, volume down, mute, unmute, next video, previous video, playback rate, captions and even redirects you to the home page if you press the home button. All these features enhance the user experience with the app. The PWA also has a dark mode which can be turned on and off as per your preference.
 
-### Tech Stacks
+### Tech Stacks/ Packages
 This project uses the following packages and languages:
 1. Hyper Text Markup Language (HTML)
 2. Cascading Style Sheets (CSS)
