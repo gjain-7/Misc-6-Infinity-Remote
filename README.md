@@ -26,7 +26,7 @@ Mentors:
 4. Skip Ads
 
 
-### Tech Stacks/ Packages
+### Tech Stacks/Packages
 This project uses the following packages and languages:
 1. Hyper Text Markup Language (HTML)
 2. Cascading Style Sheets (CSS)
@@ -40,3 +40,8 @@ This project uses the following packages and languages:
 10. Font Awesome Icons package
 11. Chrome Extension
 12. Progressive Web App (PWA)
+
+### Acknowledgement
+This Project is created during June-July, 2021 under the event IITISoC'21, which is the Annual Dev Fest of IIT Indore to introduce the students to Software Development and Open Source. During IITISoC the students work upon multiple Open Source Projects and they are mentored by experienced developers. The pattern followed by IITISoC is similar to GSoC so that the students get an idea of what GSoC is and how it works. We are grateful towards IIT Indore and IITISoC'21 for providing us this opportunity to build this amazing Project.
+
+
