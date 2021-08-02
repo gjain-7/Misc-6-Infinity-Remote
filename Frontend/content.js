@@ -21,6 +21,8 @@ function sendfirstinfo() {
   } else if (
     /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?(\/)?watch/.test(url)
   ) {
+    if(document.querySelector(".ytp-ad-skip-button") != null) 
+    {document.querySelector(".ytp-ad-skip-button").click();}
     if ((/&list=/).test(url)){
       chrome.runtime.sendMessage({
         firstc: true,
