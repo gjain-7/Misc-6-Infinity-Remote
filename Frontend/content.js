@@ -21,21 +21,24 @@ function sendfirstinfo() {
   } else if (
     /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?(\/)?watch/.test(url)
   ) {
-        const RemoveAd = function()
-	{
-	    if(document.querySelector(".ytp-ad-skip-button") != null) 
-	    {document.querySelector(".ytp-ad-skip-button").click();}
-	    if(document.querySelector(".ytp-ad-overlay-close-button") != null)
-	    {document.querySelector(".ytp-ad-overlay-close-button").click();}
+        let adnode = document.querySelector(".video-ads.ytp-ad-module");
+        if(adnode != null)
+        {
+		const RemoveAd = function()
+		{
+		    if(document.querySelector(".ytp-ad-skip-button") != null) 
+		    {document.querySelector(".ytp-ad-skip-button").click();}
+		    if(document.querySelector(".ytp-ad-overlay-close-button") != null)
+		    {document.querySelector(".ytp-ad-overlay-close-button").click();}
+		}
+		let adobserver = new MutationObserver(RemoveAd);
+		const configuration = {
+		  attributes: true,
+		  childList: true,
+		  subtree: true,
+		  characterData: true};
+		adobserver.observe(adnode,configuration);
 	}
-	let adobserver = new MutationObserver(RemoveAd);
-	let adnode = document.querySelector(".video-ads.ytp-ad-module");
-	const configuration = {
-	  attributes: true,
-	  childList: true,
-	  subtree: true,
-	  characterData: true};
-	adobserver.observe(adnode,configuration);
 
     if ((/&list=/).test(url)){
       chrome.runtime.sendMessage({
