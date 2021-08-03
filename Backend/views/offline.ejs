@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./public/error.css" />
-    <link rel="shortcut icon" type="image/png" href="./public/icons/error.png" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="./public/icons/error.png"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Remote Already Connected</title>
+    <title>You're Offline</title>
     <link rel="manifest" href="./manifest.json" />
     <link rel="apple-touch-icon" href="./public/icons/icon512.svg" />
     <link rel="apple-mobile-web-app-status-bar" content="#4dbaa8" />
@@ -14,23 +18,16 @@
   <body>
     <div>
       <img src="./public/icons/error.png" alt="Error Image" width="100vh" />
-      <h1 class="invalid">Remote Already Connected</h1>
+      <h1 class="invalid">You're Offline</h1>
     </div>
     <div>
-      <p>Looks like one remote is already connected with your browser.</p>
-      <p>You may try the following:</p>
-      <ul>
-        <li>
-          Disconnect the remote which is connected to the browser and then try
-          again.
-        </li>
-        <li>Restart your browser and then try again.</li>
-        <li>Restart the extension and then try again.</li>
-      </ul>
+      <h1>Oops!</h1>
+      <p>Page can't be viewed</p>
+      <p>Try again later when your internet connection improves</p>
     </div>
     <div>
       <form action="/qr-scanner" method="GET">
-        <button type="submit">Try Again</button>
+        <button type="submit">Home</button>
       </form>
     </div>
     <script>

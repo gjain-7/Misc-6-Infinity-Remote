@@ -2,15 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="error.css" />
-    <link rel="shortcut icon" type="image/png" href="error.png" />
+    <link rel="stylesheet" href="./public/error.css" />
+    <link rel="shortcut icon" type="image/png" href="./public/icons/error.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Code Invalid</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./public/icons/icon512.svg" />
+    <link rel="apple-mobile-web-app-status-bar" content="#4dbaa8" />
   </head>
   <body>
     <div>
-      <img src="error.png" alt="Error Image" width="100vh" />
+      <img src="./public/icons/error.png" alt="Error Image" width="100vh" />
       <h1 class="invalid">Invalid QR Code</h1>
     </div>
     <div>
@@ -22,7 +25,7 @@
       </p>
     </div>
     <div>
-      <form action="/" method="GET">
+      <form action="/qr-scanner" method="GET">
         <button type="submit">Try Again</button>
       </form>
     </div>

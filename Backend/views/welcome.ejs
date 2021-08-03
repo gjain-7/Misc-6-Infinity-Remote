@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="welcome.css" />
-    <link rel="shortcut icon" type="image/svg" href="icon.svg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./public/welcome.css" />
+    <link rel="shortcut icon" type="image/svg" href="./public/icons/icon.svg" />
     <title>Infinity Remote</title>
-</head>
-<body>
-    <div><img src="icon.svg" alt="Infinity Remote"></div>
-    <div><progress value="0" max="100"> 32% </progress></div>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./public/icons/icon512.svg" />
+    <link rel="apple-mobile-web-app-status-bar" content="#4dbaa8" />
+
+  </head>
+  <body>
+    <div><img src="./public/icons/icon.svg" alt="Infinity Remote" /></div>
+    <div><progress value="0" max="100">32%</progress></div>
     <div><p>Infinity Remote</p></div>
     <div>
-        <form action="/qr-scanner" method="GET">
-            <button type="submit">Try Again</button>
-        </form>
+      <form action="/qr-scanner" method="GET">
+        <button type="submit">Try Again</button>
+      </form>
     </div>
-    <script src="welcome.js"></script>
-</body>
+    <script src="./public/welcome.js"></script>
+  </body>
 </html>

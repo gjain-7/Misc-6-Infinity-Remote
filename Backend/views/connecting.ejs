@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="connecting.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" type="image/svg" href="icon.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./public/connecting.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" type="image/svg" href="./public/icons/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connecting</title>
-    <script src="https://infinity-remote.herokuapp.com/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-        const roomName = "<%= roomName %>";
-        const socket = io("https://infinity-remote.herokuapp.com/");
-        socket.emit("new-pwa-user", roomName);
-        console.log(roomName);
-        socket.on("Connection Established", ()=>{
-            console.log("Connection Received");
-            document.getElementById("room").value=roomName;
-            document.getElementById("mainpage").submit();
-        })
-        socket.on("Connection Ignored", ()=>{
-            console.log("Connection Ignored");
-            document.getElementById("invalid").submit();
-        })
-        socket.on("Connection Error", ()=>{
-            console.log("Connection Error");
-            document.getElementById("error").submit();
-        })
-        const currentTheme = localStorage.getItem("theme")
-            ? localStorage.getItem("theme")
-            : null;
+      const roomName = "<%= roomName %>";
+      const socket = io();
+      socket.emit("new-pwa-user", roomName);
+      console.log(roomName);
+      socket.on("Connection Established", () => {
+        console.log("Connection Received");
+        document.getElementById("room").value = roomName;
+        document.getElementById("mainpage").submit();
+      });
+      socket.on("Connection Ignored", () => {
+        console.log("Connection Ignored");
+        document.getElementById("invalid").submit();
+      });
+      socket.on("Connection Error", () => {
+        console.log("Connection Error");
+        document.getElementById("error").submit();
+      });
+      const currentTheme = localStorage.getItem("theme")
+        ? localStorage.getItem("theme")
+        : null;
 
-        if (currentTheme) {
-            document.documentElement.setAttribute("data-theme", currentTheme);
-        }
+      if (currentTheme) {
+        document.documentElement.setAttribute("data-theme", currentTheme);
+      }
     </script>
-</head>
-<body>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./public/icons/icon512.svg" />
+    <link rel="apple-mobile-web-app-status-bar" content="#4dbaa8" />
+  </head>
+  <body>
     <div class="loading">
-        <h2>Connecting...</h2>
-        <span></span>
-        <span></span>
-        <span></span>
+      <h2>Connecting...</h2>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
     <form action="/mainpage" id="mainpage" method="POST">
-        <input name="room" id = "room" type="text" required >
+      <input name="room" id="room" type="text" required />
     </form>
     <form action="/invalid" id="invalid" method="GET"></form>
     <form action="/error" id="error" method="GET"></form>
-
-
-</body>
+  </body>
 </html>

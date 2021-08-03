@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="shortcut icon" type="image/png" href="icon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Infinity Remote</title>
-  <!-- can remove above two lines -->
-</head>
-<body>
-  <form action="/connecting" method="POST">
-    <input name="room" type="text" required>
-    <button type="submit">New Room</button>
-  </form>
-  <!-- extensionSocketID  = //--REQUIRED--// to be submitted via a form -->
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./public/index.css" />
+    <link rel="shortcut icon" type="image/svg" href="./public/icons/icon.svg" />
+    <title>Infinity Remote</title>
+    <meta name="theme-color" content="#4dbaa8" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="/.public/icons/icon512.svg" />
+    <link rel="apple-mobile-web-app-status-bar" content="#4dbaa8" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("./sw.js")
+          .then((reg) => {
+            console.log("Service worker registered", reg);
+          })
+          .catch((error) => {
+            console.log("Service worker failed", error);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <h2 id="title">Infinity Remote</h2>
+      <p id="inst">
+        Click on the extension icon and scan the <strong>QR-Code</strong>.
+      </p>
+
+      <a id="btn-scan-qr"></a>
+    </div>
+    <canvas id="qr-canvas"></canvas>
+    <form action="/connecting" method="POST" hidden="">
+      <input type="text" name="room" />
+    </form>
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+    <script src="/public/index.js"></script>
+  </body>
 </html>
