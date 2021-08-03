@@ -1,4 +1,4 @@
-const socket = io("http://192.168.1.10:3000");
+const socket = io();
 socket.emit("new-pwa-user", roomName);
 
 const toggleSwitch = document.querySelector(
@@ -437,7 +437,5 @@ function speed() {
 function sendMeURL() {
   sendsocket("sendMeURL");
 }
-console.log("Popup Working Great");
+console.log("Mainpage Working Great");
 sendMeURL();
-
-// document.getElementsByTagName("video")[0].playbackRate
