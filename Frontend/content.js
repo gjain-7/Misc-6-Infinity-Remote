@@ -26,11 +26,15 @@ function sendfirstinfo() {
 	    if(document.querySelector(".ytp-ad-skip-button") != null) 
 	    {document.querySelector(".ytp-ad-skip-button").click();}
 	    if(document.querySelector(".ytp-ad-overlay-close-button") != null)
-	    {document.querySelector(".ytp-ad-overlay-close-button").click()}
+	    {document.querySelector(".ytp-ad-overlay-close-button").click();}
 	}
 	let adobserver = new MutationObserver(RemoveAd);
 	let adnode = document.querySelector(".video-ads.ytp-ad-module");
-	const configuration = {attributes: true, childList: true, subtree: true};
+	const configuration = {
+	  attributes: true,
+	  childList: true,
+	  subtree: true,
+	  characterData: true};
 	adobserver.observe(adnode,configuration);
 
     if ((/&list=/).test(url)){
