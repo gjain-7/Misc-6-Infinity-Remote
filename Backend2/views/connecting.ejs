@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="connecting.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/svg" href="icons/icon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecting</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const roomName = "<%= roomName %>";
+        const socket = io();
+        socket.emit("new-pwa-user", roomName);
+        console.log(roomName);
+        socket.on("Connection Established", ()=>{
+            console.log("Connection Received");
+            document.getElementById("room").value=roomName;
+            document.getElementById("mainpage").submit();
+        })
+        socket.on("Connection Ignored", ()=>{
+            console.log("Connection Ignored");
+            document.getElementById("invalid").submit();
+        })
+        socket.on("Connection Error", ()=>{
+            console.log("Connection Error");
+            document.getElementById("error").submit();
+        })
+        const currentTheme = localStorage.getItem("theme")
+            ? localStorage.getItem("theme")
+            : null;
+
+        if (currentTheme) {
+            document.documentElement.setAttribute("data-theme", currentTheme);
+        }
+    </script>
+</head>
+<body>
+    <div class="loading">
+        <h2>Connecting...</h2>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <form action="/mainpage" id="mainpage" method="POST">
+        <input name="room" id = "room" type="text" required >
+    </form>
+    <form action="/invalid" id="invalid" method="GET"></form>
+    <form action="/error" id="error" method="GET"></form>
+
+
+</body>
+</html>

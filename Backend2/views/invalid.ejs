@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="error.css" />
+    <link rel="shortcut icon" type="image/png" href="icons/error.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Already Connected</title>
+</head>
+<body>
+    <div>
+        <img src="icons/error.png" alt= "Error Image" width="100vh">
+        <h1 class="invalid">Remote Already Connected</h1>
+    </div>
+    <div>
+        <p>Looks like one remote is already connected with your browser.</p>
+        <p>You may try the following:</p>
+        <ul>
+            <li>Disconnect the remote which is connected to the browser and then try again.</li>
+            <li>Restart your browser and then try again.</li>
+            <li>Restart the extension and then try again.</li>
+        </ul>
+    </div>
+    <div>
+        <form action="/" method="GET">
+            <button type="submit">Try Again</button>
+        </form>
+    </div>
+    <script>
+        const currentTheme = localStorage.getItem("theme")
+          ? localStorage.getItem("theme")
+          : null;
+
+        if (currentTheme) {
+          document.documentElement.setAttribute("data-theme", currentTheme);
+        }
+      </script>
+</body>
+</html>
