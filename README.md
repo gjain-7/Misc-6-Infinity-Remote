@@ -16,7 +16,7 @@ Mentors:
 
 ### How to Implement and Use
 1. Download the Frontend folder on your Desktop and load it in [Chrome Extensions](chrome://extensions).
-2. Open [Infinity Remote](https://mysterious-anchorage-10324.herokuapp.com) from your Mobile browser.
+2. Open [Infinity Remote](https://infinity-remote.herokuapp.com) from your Mobile browser.
 
 
 ### Features
@@ -45,7 +45,7 @@ This project uses the following packages and languages:
 This Project is created during June-July, 2021 under the event IITISoC'21, which is the Annual Dev Fest of IIT Indore to introduce the students to Software Development and Open Source. During IITISoC the students work upon multiple Open Source Projects and they are mentored by experienced developers. The pattern followed by IITISoC is similar to GSoC so that the students get an idea of what GSoC is and how it works. We are grateful towards IIT Indore and IITISoC'21 for providing us this opportunity to build this amazing Project.
 
 ### UML Diagram
-![Alt text](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/main/Infinity%20Remote.svg)
+![UML Diagram illustrating the design flow of the Project](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/main/Infinity%20Remote.svg)
 
 
 
