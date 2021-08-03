@@ -50,8 +50,8 @@ io.on("connection", (socket) => {
   socket.on("new-pwa-user", (room) => {
     // joining popup
     console.log(socket.id);
-    if (io.sockets.adapter.rooms.has(room)){
-      let roomie = io.sockets.adapter.rooms.get(room);
+    let roomie = io.sockets.adapter.rooms.get(room);
+    if(roomie){
       console.log(roomie, " ", roomie.size);
       if (roomie.size < 2) {
         socket.join(room);
@@ -72,7 +72,7 @@ io.on("connection", (socket) => {
     console.log("pwa: ", message);
     console.log(socket.id, " room: ", socket.rooms);
     let roomie = io.sockets.adapter.rooms.get(room);
-    if (roomie.has(socket.id)) {
+    if (roomie && roomie.has(socket.id)) {
       io.in(room).emit("popupmessage", message);
     }
   });
