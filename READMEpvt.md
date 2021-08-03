@@ -10,11 +10,12 @@
 5. Implemented Video Control Features.
 6. Implemented Error Pages for better User Experience.
 7. Implemented PWA.
-8. Implemented Server using Heroku (https://mysterious-anchorage-10324.herokuapp.com)
+8. Implemented Server using Heroku (https://infinity-remote.herokuapp.com)
 9. Created Icon for the PWA.
 10. Skipped Ads
 11. Created UML Diagrams
 12. Presentation and Readme
+13. PWA Implemented
 
 ### How to implement: 
 In order to implement you need to do the following steps:
@@ -24,9 +25,10 @@ In order to implement you need to do the following steps:
 
 
 ### Objectives To do (as per priority):
-1. Implement PWA
-2. Fixing Errors
-3. Screenshots/GIF
+1. Fixing Errors
+2. Screenshots/GIF
+3. Refactoring the code
+4. Publish ?
 
 ### Difficulties being faced:
 1. Press and hold feature for navigation buttons 
