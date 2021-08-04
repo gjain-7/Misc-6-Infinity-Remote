@@ -41,6 +41,9 @@ self.addEventListener("activate", function(event){
     )
 })
 self.addEventListener('fetch', function(event){
+    const options = {
+    ignoreVary: true
+  };
     console.log("Fetch Event", event);
     event.respondWith(
         caches.match(event.request).then(function(response){
