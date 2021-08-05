@@ -16,7 +16,7 @@ Mentors:
 
 ### How to Implement and Use
 1. Download the Frontend folder on your Desktop and load it in [Chrome Extensions](chrome://extensions).
-2. Open [Infinity Remote](https://infinity-remote.herokuapp.com) from your Mobile browser.
+2. Open https://infinity-remote.herokuapp.com from your Mobile browser.
 
 
 ### Features
