@@ -47,5 +47,12 @@ This Project is created during June-July, 2021 under the event IITISoC'21, which
 ### UML Diagram
 ![UML Diagram illustrating the design flow of the Project](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/main/UML%20Diagram.svg)
 
+### Screenshots
+![QR-Scanner](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/87a3027b7bccbb2c48e5cac2398111ba36df766c/Screenshots/QR-Scanner.png)
+![Remote-Navigation](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/87a3027b7bccbb2c48e5cac2398111ba36df766c/Screenshots/Remote-Panels.png)
+![Video being controlled by Remote](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/87a3027b7bccbb2c48e5cac2398111ba36df766c/Screenshots/Extension-Video.png
+)
+![Remote controlling the Video](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/87a3027b7bccbb2c48e5cac2398111ba36df766c/Screenshots/Remote-video-light.png)
+
 
 
