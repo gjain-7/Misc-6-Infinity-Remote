@@ -766,7 +766,7 @@ function speed(rangeSliderValue) {
       shiftKey: true,
       keyCode: 190,
     });
-    for (let i = 0; i < rangeSliderValue - initvalue; i++) {
+    for (let  i= 0; i < rangeSliderValue - initvalue; i++) {
       document.dispatchEvent(e);
     }
   } else {
@@ -839,6 +839,7 @@ function gotMessage(message, _sender, sendResponse) {
     if (videotoken === false) {
       videoscreen();
     }
+    theater();
   } else if (message === "youtube") {
     youtube();
   } else if (message === "searchselect") {
