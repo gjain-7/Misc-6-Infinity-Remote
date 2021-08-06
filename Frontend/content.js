@@ -5,6 +5,8 @@ var searchtoken = false;
 var videotoken = false;
 var videopaneltoken = false;
 var thumbnails_index = 0;
+var fullscreen_variable;
+
 // var autoplayed;
 // videotoken,paneltoken and searchtoken  is to avoid doubling when remote disconnects and reconnects
 // videopaneltoken is to avoid double highlighting when users go back between full screen and small screen
@@ -23,6 +25,8 @@ function sendfirstinfo() {
   } else if (
     /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?(\/)?watch/.test(url)
   ) {
+    fullscreen_variable = (document.getElementsByClassName("ytp-size-button")[0].title.slice(0, 7) ==
+    "Theater")? false : true;
         let adnode = document.querySelector(".video-ads.ytp-ad-module");
         if(adnode != null)
         {
@@ -40,7 +44,7 @@ function sendfirstinfo() {
 		  subtree: true,
 		  characterData: true};
 		adobserver.observe(adnode,configuration);
-	}
+	    }
 
   var msg= {
     firstc: true,
@@ -53,6 +57,7 @@ function sendfirstinfo() {
     mute: document
       .getElementsByClassName("ytp-mute-button")[0]
       .title.slice(0, 1),
+    isfullscreen : fullscreen_variable,
       playlist : false
   };
   if ((/&list=/).test(url)){
@@ -526,7 +531,8 @@ function voldown() {
   volumelevel = Math.max(0, volumelevel);
   volumeset();
 }
-var fullscreen_variable = false;
+
+
 function screene() {
   console.log("Screen Button clicked");
   var e = new KeyboardEvent("keydown", {
@@ -847,10 +853,8 @@ function gotMessage(message, _sender, sendResponse) {
     console.log("Bring it on");
   } else if (message.split(",")[0] == "speedlevel") {
     initvalue = Number(message.split(",")[1]);
-  } else if (message.split(",")[0] == "search") {
-    let searchquery = message.split(",")[1];
-    searchquery = encodeURIComponent(searchquery);
-    //commas to be replaced with colons and encodeURIcomponent to be removed from content and included in remote
+  } else if (message.split(":")[0] == "search") {
+    let searchquery = message.split(":")[1];
     youtubesearch(searchquery);
   }
 }
