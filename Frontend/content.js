@@ -547,11 +547,12 @@ function screene() {
   if(fullscreen_variable)
   {
     console.log("pressed");
-    document.querySelector(".video-stream.html5-main-video").scrollIntoView({block: "center", behaviour: "smooth"}); 
+    window.scrollTo(0,0);
   }
   else
   {
-    vspanels[vsindex].scrollIntoView({ block: "center", behaviour: "smooth" });
+    // vspanels[vsindex].scrollIntoViewIfNeeded({ block: "center", behaviour: "smooth" });
+    vspanels[vsindex].scrollIntoViewIfNeeded({behaviour: "smooth" });
   }
   videopaneltoken = false;
 }
