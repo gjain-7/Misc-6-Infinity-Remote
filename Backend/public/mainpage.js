@@ -1,3 +1,5 @@
+const e = require("express");
+
 const socket = io();
 socket.emit("new-pwa-user", roomName);
 
@@ -77,6 +79,11 @@ function receivesocket(message) {
       rangeBullet.innerHTML = "x " + playbackSpeed[rangeSlider.value];
     }
     videoscreen();
+    if(message.isfullscreen == false)
+    {
+        theatremode = false;
+        screene();
+    }
     if (message.firstc == false) {
       sendsocket(`volume,${volumelevel}`);
       sendsocket(`speedlevel,${initvalue}`);
@@ -418,13 +425,15 @@ function caption() {
   }
 }
 
-function search() {
+function search(event) {
+  if(event.type == "click" || /*(event.type == "keyDown" &&*/ event.keyCode==13){ 
   let x = document.getElementById("searchbox").value;
   x = encodeURIComponent(x);
   if (x !== "") {
     sendsocket(`search:${x}`);
   }
   document.getElementById("searchbox").value = "";
+}
 }
 
 function youtube() {
