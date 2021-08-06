@@ -1,5 +1,3 @@
-const e = require("express");
-
 const socket = io();
 socket.emit("new-pwa-user", roomName);
 
@@ -56,11 +54,6 @@ function receivesocket(message) {
     selectcounter = 0;
     panelscreen();
   } else if (message.msg === "videoscreen") {
-    if(!message.isfullscreen)
-    {
-        theatremode = false;
-        screene();
-    }
     selectcounter = 1;
     if (message.playcounter === "Play") {
       playcounter = true;
@@ -79,11 +72,6 @@ function receivesocket(message) {
       rangeBullet.innerHTML = "x " + playbackSpeed[rangeSlider.value];
     }
     videoscreen();
-    if(message.isfullscreen == false)
-    {
-        theatremode = false;
-        screene();
-    }
     if (message.firstc == false) {
       sendsocket(`volume,${volumelevel}`);
       sendsocket(`speedlevel,${initvalue}`);
