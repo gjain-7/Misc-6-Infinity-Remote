@@ -76,12 +76,15 @@
         />
       </div>
     </div>
+    <form onsubmit="search()">
     <input
       type="text"
       class="searchbox"
       id="searchbox"
       placeholder="Search..."
     />
+    <button type="submit" class="searchSubmit"></button>
+  </form>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./public/mainpage.js"></script>
   </body>
