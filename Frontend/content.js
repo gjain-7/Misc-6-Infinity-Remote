@@ -6,6 +6,8 @@ var videotoken = false;
 var videopaneltoken = false;
 var thumbnails_index = 0;
 // var autoplayed;
+// videotoken,paneltoken and searchtoken  is to avoid doubling when remote disconnects and reconnects
+// videopaneltoken is to avoid double highlighting when users go back between full screen and small screen
 function sendfirstinfo() {
   console.log("First Connection made by the remote");
   let url = window.location.href;
@@ -40,39 +42,25 @@ function sendfirstinfo() {
 		adobserver.observe(adnode,configuration);
 	}
 
-    if ((/&list=/).test(url)){
-      chrome.runtime.sendMessage({
-        firstc: true,
-        msg: "videoscreen",
-        speed: document.getElementsByTagName("video")[0].playbackRate,
-        volume: document.getElementsByClassName("video-stream")[0].volume,
-        playcounter: document
-          .getElementsByClassName("ytp-play-button")[0]
-          .attributes["aria-label"].nodeValue.slice(0, -4),
-        mute: document
-          .getElementsByClassName("ytp-mute-button")[0]
-          .title.slice(0, 1),
-        playlist: true
-      });
-    }
-    else{
-      chrome.runtime.sendMessage({
-        firstc: true,
-        msg: "videoscreen",
-        speed: document.getElementsByTagName("video")[0].playbackRate,
-        volume: document.getElementsByClassName("video-stream")[0].volume,
-        playcounter: document
-        .getElementsByClassName("ytp-play-button")[0]
-        .attributes["aria-label"].nodeValue.slice(0, -4),
-        mute: document
-        .getElementsByClassName("ytp-mute-button")[0]
-        .title.slice(0, 1),
-        playlist: false
-      });
-    }
+  var msg= {
+    firstc: true,
+    msg: "videoscreen",
+    speed: document.getElementsByTagName("video")[0].playbackRate,
+    volume: document.getElementsByClassName("video-stream")[0].volume,
+    playcounter: document
+      .getElementsByClassName("ytp-play-button")[0]
+      .attributes["aria-label"].nodeValue.slice(0, -4),
+    mute: document
+      .getElementsByClassName("ytp-mute-button")[0]
+      .title.slice(0, 1),
+      playlist : false
+  };
+  if ((/&list=/).test(url)){
+    msg.playlist = true;
+  }
+  chrome.runtime.sendMessage(msg);
     initvalue = document.getElementsByTagName("video")[0].playbackRate * 4 - 1;
     volumelevel = document.getElementsByClassName("video-stream")[0].volume;
-    theater();
   } else if (
     /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?(\/)?results\?search\_query\=/.test(
       url
@@ -403,10 +391,11 @@ function videoscreen() {
   setInterval(volumeset, 50);
   theater();
 }
-
+var vspanels;
+var vsindex;
 function videopanelscreen() {
-  let vsindex = 0;
-  var vspanels = document.querySelectorAll(
+  vsindex = 0;
+  vspanels = document.querySelectorAll(
     "#thumbnail.yt-simple-endpoint.style-scope"
   );
   var playlist_panels = document.querySelectorAll(
@@ -521,7 +510,6 @@ function videopanelscreen() {
       lastUrl = url;
       console.log("autoplayed");
       autoplayed();
-      sendfirstinfo();
     }
   }).observe(document, { subtree: true, childList: true });
 
@@ -538,7 +526,7 @@ function voldown() {
   volumelevel = Math.max(0, volumelevel);
   volumeset();
 }
-
+var fullscreen_variable = false;
 function screene() {
   console.log("Screen Button clicked");
   var e = new KeyboardEvent("keydown", {
@@ -550,9 +538,20 @@ function screene() {
     shiftKey: false,
     keyCode: 84,
   });
+  fullscreen_variable = !fullscreen_variable;
   document.dispatchEvent(e);
-  if (videopaneltoken == true) {
+  if (videopaneltoken == true) 
+  {
     videopanelscreen();
+  }
+  if(fullscreen_variable)
+  {
+    console.log("pressed");
+    document.querySelector(".video-stream.html5-main-video").scrollIntoView({block: "center", behaviour: "smooth"}); 
+  }
+  else
+  {
+    vspanels[vsindex].scrollIntoView({ block: "center", behaviour: "smooth" });
   }
   videopaneltoken = false;
 }
@@ -850,6 +849,7 @@ function gotMessage(message, _sender, sendResponse) {
   } else if (message.split(",")[0] == "search") {
     let searchquery = message.split(",")[1];
     searchquery = encodeURIComponent(searchquery);
+    //commas to be replaced with colons and encodeURIcomponent to be removed from content and included in remote
     youtubesearch(searchquery);
   }
 }
