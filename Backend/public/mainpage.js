@@ -54,6 +54,11 @@ function receivesocket(message) {
     selectcounter = 0;
     panelscreen();
   } else if (message.msg === "videoscreen") {
+    if(!message.isfullscreen)
+    {
+        theatremode = false;
+        screene();
+    }
     selectcounter = 1;
     if (message.playcounter === "Play") {
       playcounter = true;
@@ -103,23 +108,23 @@ document.getElementById("p9").addEventListener("click", youtube);
 document.getElementById("p10").addEventListener("click", screene);
 document.getElementById("p11").addEventListener("click", caption);
 document.querySelectorAll("input")[1].addEventListener("input", speed);
-document.getElementById("p2").addEventListener("mousedown", function () {
+document.getElementById("p2").addEventListener("touchstart", function () {
   leftbutton();
   leftid = setInterval(leftbutton, 300);
 });
-document.getElementById("p3").addEventListener("mousedown", function () {
+document.getElementById("p3").addEventListener("touchstart", function () {
   rightbutton();
   rightid = setInterval(rightbutton, 300);
 });
-document.getElementById("p4").addEventListener("mousedown", function () {
+document.getElementById("p4").addEventListener("touchstart", function () {
   upbutton();
   upid = setInterval(upbutton, 300);
 });
-document.getElementById("p5").addEventListener("mousedown", function () {
+document.getElementById("p5").addEventListener("touchstart", function () {
   downbutton();
   downid = setInterval(downbutton, 300);
 });
-document.addEventListener("mouseup", function () {
+document.addEventListener("touchend", function () {
   clearInterval(downid);
   clearInterval(leftid);
   clearInterval(upid);
@@ -415,10 +420,9 @@ function caption() {
 
 function search() {
   let x = document.getElementById("searchbox").value;
-  if (x === "") {
-    //do nothing
-  } else {
-    sendsocket(`search,${x}`);
+  x = encodeURIComponent(x);
+  if (x !== "") {
+    sendsocket(`search:${x}`);
   }
   document.getElementById("searchbox").value = "";
 }
