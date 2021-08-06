@@ -57,7 +57,6 @@ function sendfirstinfo() {
     mute: document
       .getElementsByClassName("ytp-mute-button")[0]
       .title.slice(0, 1),
-    isfullscreen : fullscreen_variable,
       playlist : false
   };
   if ((/&list=/).test(url)){
@@ -388,13 +387,13 @@ function theater() {
     console.log("Screene Clicked");
     screene();
   }
-  videopaneltoken = true;
 }
 function videoscreen() {
   videotoken = true;
   console.log("Video Screen Activated");
-  setInterval(volumeset, 50);
+  videopaneltoken = true;
   theater();
+  setInterval(volumeset, 50);
 }
 var vspanels;
 var vsindex;
@@ -508,7 +507,7 @@ function videopanelscreen() {
     playlist_panel_num = 0;
     if (playlist_panels.length != 0) NumOfPanels = playlist_panels.length;
   }
-  let lastUrl= this.document.location;
+  // let lastUrl= this.document.location;
   new MutationObserver(() => {
     const url = location.href;
     if (url !== lastUrl) {
@@ -544,12 +543,12 @@ function screene() {
     shiftKey: false,
     keyCode: 84,
   });
-  fullscreen_variable = !fullscreen_variable;
   document.dispatchEvent(e);
   if (videopaneltoken == true) 
   {
     videopanelscreen();
   }
+  fullscreen_variable = !fullscreen_variable;
   if(fullscreen_variable)
   {
     console.log("pressed");
@@ -759,20 +758,20 @@ function speed(rangeSliderValue) {
   if (rangeSliderValue > initvalue) {
     var e = new KeyboardEvent("keydown", {
       bubbles: true,
-      cancelable: true,
+      cancelable: false,
       charCode: "0",
       code: "Period",
       key: ">",
       shiftKey: true,
       keyCode: 190,
     });
-    for (let  i= 0; i < rangeSliderValue - initvalue; i++) {
+    for (let i = 0; i < rangeSliderValue - initvalue; i++) {
       document.dispatchEvent(e);
     }
   } else {
     var e = new KeyboardEvent("keydown", {
       bubbles: true,
-      cancelable: true,
+      cancelable: false,
       charCode: "0",
       code: "Comma",
       key: "<",
@@ -837,9 +836,11 @@ function gotMessage(message, _sender, sendResponse) {
     searchtoken = false;
     paneltoken = false;
     if (videotoken === false) {
-      videoscreen();
-    }
+      videoscreen(); 
+    }else{
+      console.log("Theater called from else");
     theater();
+    }
   } else if (message === "youtube") {
     youtube();
   } else if (message === "searchselect") {
