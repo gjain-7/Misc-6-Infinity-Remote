@@ -30,12 +30,8 @@ In order to implement you need to do the following steps:
 3. Refactoring the code
 4. Publish ?
 
-### Difficulties being faced:
-
-
 ### Fixes Used (Jugaad, although working, but should not have been used)
 1. Volume regulation (uncoventional, although working)
-2. chrome://flags/#extensions-on-chrome-urls (Will need to be fixed or feature to be added for its permission or removed completely)
-3. Theatre mode in place of Full Screen Mode 
+2. Theatre mode in place of Full Screen Mode 
 
 
