@@ -31,7 +31,7 @@ In order to implement you need to do the following steps:
 4. Publish ?
 
 ### Difficulties being faced:
-1. Press and hold feature for navigation buttons 
+
 
 ### Fixes Used (Jugaad, although working, but should not have been used)
 1. Volume regulation (uncoventional, although working)
