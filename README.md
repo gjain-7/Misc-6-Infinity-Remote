@@ -20,10 +20,14 @@ Mentors:
 
 
 ### Features
-1. Screen Navigation - On the Home screen, Search Results screen, Video Mode screen
-2. Video Controls - Such as Play, Pause, Volume Up-Down, Mute-Unmute, Captions, Playback Rate, Previous Video and Next Video.
-3. Dark Mode as per your convenience
-4. Skip Ads
+1. Selection and  Navigation
+2. Playback Controls - Such as Play, Pause, Volume Up-Down, Mute-Unmute, Captions, Playback Rate, Previous Video and Next Video.
+3. 1-1 Connection
+4. PWA for easy accessibility
+5. Searching on Youtube
+6. Dark Mode as per your convenience
+7. Instructions and error pages
+8. Skipping of Advertisements
 
 
 ### Tech Stacks/Packages
