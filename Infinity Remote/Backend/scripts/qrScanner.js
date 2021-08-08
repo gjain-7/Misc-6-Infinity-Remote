@@ -24,8 +24,7 @@ function openScan() {
     .then(function (stream) {
       scanning = true;
       canvasElement.hidden = false;
-      video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-      video.srcObject = stream;
+      video.setAttribute("playsinline", true);
       video.play();
       tick();
       scan();
@@ -50,7 +49,6 @@ function scan() {
   }
 }
 function sendData(data) {
-  // console.log(data);
   form.querySelector("input").value = data;
   form.submit();
 }

@@ -1,5 +1,4 @@
 let progressbar = document.querySelector("progress");
-// console.log(progressbar.value);
 
 for (let i = 0; i <= 100; i++) {
   setTimeout(function () {

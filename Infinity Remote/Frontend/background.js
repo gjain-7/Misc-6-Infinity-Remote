@@ -1,4 +1,3 @@
-// console.log("background initiated");
 const socket = io("https://infinity-remote.herokuapp.com");
 socket.on("connect", function () {
   console.log("content initiated", socket.id);
@@ -17,7 +16,6 @@ function apply(message) {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   socket.emit("messageFromExtension", message);
-  // console.log(message);
 });
 
 socket.on("messageFromRemote", (message) => {

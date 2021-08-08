@@ -216,15 +216,12 @@ input:checked + .slider:before {
 }
 
 [data-theme="dark"] {
-  /* --bg-color: #081d42; */
   --bg-color: #03254c;
-  /* --bg-color: #45b6fe; */
   --heading-bg-color: #020202;
   --heading-color: #00bfff;
   --icon-color: white;
   --button-bg-color: #1d1d1d;
   --button-hover-color: dodgerblue;
-  /* --button-border-color: #0c1a32; */
   --button-border-color: #03254c;
 }
 #container {

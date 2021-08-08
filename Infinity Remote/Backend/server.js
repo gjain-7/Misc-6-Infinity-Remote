@@ -13,7 +13,6 @@ const io = require("socket.io")(server, {
 });
 
 const path = __dirname;
-console.log(path);
 app.set("views", "./views");
 app.set("view engine", "ejs");
 app.use(compression());
@@ -90,6 +89,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    // console.log(socket.id, "left");
+    console.log(socket.id, "left");
   });
 });

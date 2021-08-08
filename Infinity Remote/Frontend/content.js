@@ -84,7 +84,6 @@ var muted = 0;
 var isCaret = false;
 
 function setColumn() {
-  console.log("Column Width synchronized");
   if (window.innerWidth > 1143) {
     columnCount = 4;
   } else if (window.innerWidth > 887) {
@@ -96,7 +95,6 @@ function setColumn() {
 window.addEventListener("resize", setColumn);
 setColumn();
 function homeScreen() {
-  console.log("Panel Screen Activated");
   inHomeScreen = true;
   caretButton = document.querySelectorAll(
     "ytd-button-renderer#show-more-button"
@@ -161,7 +159,6 @@ function homeScreen() {
           panelIndex = panelIndex + x + 1;
           caretButton[caretList[caretIndex]].click();
           caretList.splice(caretIndex, 1);
-          console.log(caretList[caretIndex]);
         }
         isCaret = false;
         panelList[panelIndex].scrollIntoView({ block: "center" });
@@ -221,7 +218,6 @@ function homeScreen() {
 let keyMap = { 38: -1, 40: +1 };
 
 function searchScreen() {
-  console.log("Search Screen Activated");
   inSearchScreen = true;
 
   var searchPanels = document.querySelectorAll("#thumbnail");
@@ -329,7 +325,6 @@ function searchScreen() {
             "hidden"
           ) != ""
         ) {
-          console.log("selectEntered");
           var shelf = searchPanelParent.previousElementSibling;
           shelf.firstElementChild.children[1].firstElementChild.children[1].style.borderBottom =
             "6px solid dodgerblue";
@@ -352,13 +347,11 @@ function checkTheater() {
     document.getElementsByClassName("ytp-size-button")[0].title.slice(0, 7) ==
     "Theater"
   ) {
-    console.log("Screene Clicked");
     screenButton();
   }
 }
 function videoScreen() {
   inVideoScreen = true;
-  console.log("Video Screen Activated");
   checkTheater();
   isHighlighted = false;
   setInterval(setVolume, 50);
@@ -493,27 +486,23 @@ function videoHighlighter() {
     const url = location.href;
     if (url !== lastUrl) {
       lastUrl = url;
-      console.log("videoAutoplay");
       videoAutoplay();
     }
   }).observe(document, { subtree: true, childList: true });
 }
 
 function volumeIncreased() {
-  console.log("Volume has been increased");
   volumeLevel += 0.1;
   volumeLevel = Math.min(1, volumeLevel);
   setVolume();
 }
 function volumeDecreased() {
-  console.log("Volume has been decreased");
   volumeLevel -= 0.1;
   volumeLevel = Math.max(0, volumeLevel);
   setVolume();
 }
 
 function screenButton() {
-  console.log("Screen Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -529,7 +518,6 @@ function screenButton() {
   }
   isHighlighted = true;
   inTheaterMode = !inTheaterMode;
-  console.log(inTheaterMode)
   if (inTheaterMode) {
     window.scrollTo(0, 0);
   } else {
@@ -539,7 +527,6 @@ function screenButton() {
   }
 }
 function mute() {
-  console.log("Mute/Unmute Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -552,7 +539,6 @@ function mute() {
   document.dispatchEvent(e);
 }
 function stepBackward() {
-  console.log("Step Back Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -565,7 +551,6 @@ function stepBackward() {
   document.dispatchEvent(e);
 }
 function stepForward() {
-  console.log("Step Forward button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -579,7 +564,6 @@ function stepForward() {
 }
 
 function leftButton() {
-  console.log("Left Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -592,7 +576,6 @@ function leftButton() {
   document.dispatchEvent(e);
 }
 function rightButton() {
-  console.log("Right Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -605,7 +588,6 @@ function rightButton() {
   document.dispatchEvent(e);
 }
 function upButton() {
-  console.log("Up Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -618,7 +600,6 @@ function upButton() {
   document.dispatchEvent(e);
 }
 function downButton() {
-  console.log("Down Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -632,7 +613,6 @@ function downButton() {
 }
 
 function caption() {
-  console.log("Closed Captions clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -646,11 +626,9 @@ function caption() {
 }
 
 function back() {
-  console.log("Back Button clicked");
   window.history.back();
 }
 function panelSelected() {
-  console.log("Select Button clicked");
   if (isCaret == true) {
     var e = new KeyboardEvent("keydown", {
       bubbles: true,
@@ -667,7 +645,6 @@ function panelSelected() {
   }
 }
 function selectEntered() {
-  console.log("Select Button clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -680,17 +657,14 @@ function selectEntered() {
   document.dispatchEvent(e);
 }
 function home() {
-  console.log("Home Button clicked");
   this.document.location = "https://www.youtube.com/";
 }
 function youtubeSearch(searchQuery) {
-  console.log("Query is searched");
   thumbnailIndex = 0;
   inSearchScreen = false;
   this.document.location = `https://www.youtube.com/results?search_query=${searchQuery}`;
 }
 function changePlay() {
-  console.log("Play/Pause Button is clicked");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -703,7 +677,6 @@ function changePlay() {
   document.dispatchEvent(e);
 }
 function playlistBackward() {
-  console.log("playlistBackward");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -716,7 +689,6 @@ function playlistBackward() {
   document.dispatchEvent(e);
 }
 function playlistForward() {
-  console.log("playlistForward");
   var e = new KeyboardEvent("keydown", {
     bubbles: true,
     cancelable: true,
@@ -729,7 +701,6 @@ function playlistForward() {
   document.dispatchEvent(e);
 }
 function changeSpeed(rangeSliderValue) {
-  console.log("Playback Speed set");
   if (rangeSliderValue > speedIndex) {
     var e = new KeyboardEvent("keydown", {
       bubbles: true,
@@ -813,7 +784,6 @@ function gotMessage(message, _sender, sendResponse) {
     if (inVideoScreen === false) {
       videoScreen();
     } else {
-      console.log("Theater called from else");
       checkTheater();
     }
   } else if (message === "home") {
@@ -830,5 +800,3 @@ function gotMessage(message, _sender, sendResponse) {
   }
 }
 
-// var d = new Date();
-// console.log("Content Scripts Working " + d.toLocaleTimeString());
