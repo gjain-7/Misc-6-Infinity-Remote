@@ -49,7 +49,7 @@ This Project is created during June-July, 2021 under the event IITISoC'21, which
 Documentation can be found [here](https://docs.google.com/document/d/1REjqQN7qbH5l_CglM1tw-Q24cmVuz2DY5YAoGSE6kVo/edit?usp=sharing)
 
 ### Presentation
-Presentation can be found [here](https://docs.google.com/presentation/d/1hgWD-B63B1HiPYFPqtR4fqtTdgqv-SCXV8EWgrI1b3Y)
+Presentation can be found [here](https://1drv.ms/p/s!AsYmk9x5xIRLgyO8mSi8Xb18hoy8?e=F4Gcqr)
 
 ### UML Diagram
 ![UML Diagram illustrating the design flow of the Project](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/main/UML%20Diagram.svg)
