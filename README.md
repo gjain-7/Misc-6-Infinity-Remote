@@ -45,7 +45,11 @@ This project uses the following packages and languages:
 ### Acknowledgement
 This Project is created during June-July, 2021 under the event IITISoC'21, which is the Annual Dev Fest of IIT Indore to introduce the students to Software Development and Open Source. During IITISoC, the students work upon multiple Open Source Projects and they are mentored by experienced developers. The pattern followed by IITISoC is similar to GSoC so that the students get an idea of what GSoC is and how it works. We are grateful towards IIT Indore and IITISoC'21 for providing us this opportunity to build this amazing Project.
 
-You can find the Presentation [here](https://docs.google.com/presentation/d/1hgWD-B63B1HiPYFPqtR4fqtTdgqv-SCXV8EWgrI1b3Y)
+### Documentation
+Documentation can be found [here](https://docs.google.com/document/d/1REjqQN7qbH5l_CglM1tw-Q24cmVuz2DY5YAoGSE6kVo/edit?usp=sharing)
+
+### Presentation
+Presentation can be found [here](https://docs.google.com/presentation/d/1hgWD-B63B1HiPYFPqtR4fqtTdgqv-SCXV8EWgrI1b3Y)
 
 ### UML Diagram
 ![UML Diagram illustrating the design flow of the Project](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/main/UML%20Diagram.svg)
