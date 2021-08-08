@@ -12,7 +12,7 @@ body {
 }
 
 h2 {
-  color: black;
+  color: var(--text-color);
   font-size: 39px;
   width: auto;
   margin: 10px;
@@ -24,7 +24,7 @@ div {
   margin: 0;
 }
 
-#qrCanvas {
+#qr-canvas {
   margin: auto;
   width: 100%;
   height: 70%;
@@ -46,15 +46,30 @@ form {
   --bg-color: #00bfff;
   /* --bg-color: #87e6fc; */
   --text-color: black;
+  --link-color: #072f5f
 }
 
 [data-theme="dark"] {
   --bg-color: #03254c;
   --text-color: white;
+  --link-color:#009dff;
 }
 
 @media only screen and (min-width: 768px){
   .instruction{
     visibility: visible;
   }
+}
+
+a:link {
+  color: var(--link-color);
+}
+
+a:visited {
+  color: var(--link-color);
+}
+
+
+a:active {
+  color: red;
 }

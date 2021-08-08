@@ -1,90 +1,41 @@
-
 body {
   background-color: var(--bg-color);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .header {
-  color: var(--header-color);
-  background-color: var(--header-bg-color);
+  color: var(--heading-color);
+  background-color: var(--heading-bg-color);
   width: 92vw;
   position: absolute;
   top: 1vw;
   font-size: 5vw;
-  height: 10vw;
+  height: 8vw;
   padding: 2vw 2vw 0vw 2vw;
   font-weight: bold;
   border-radius: 2vw;
 }
-.theme-switch {
-  position: absolute;
-  top: 2vw;
-  right: 7vw;
-  height: 8vw;
-  width: 12vw;
-}
 
-.theme-switch input {
-  display: none;
-}
-
-.slider {
-  background-color: #888;
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: 0.4s;
-}
-
-.slider:before {
-  background-color: #fff;
-  bottom: 0.8vw;
-  content: "";
-  height: 6.5vw;
-  left: 0.8vw;
-  position: absolute;
-  transition: 0.4s;
-  width: 5.2vw;
-}
-
-input:checked + .slider {
-  background-color: #00bfff;
-}
-
-input:checked + .slider:before {
-  transform: translateX(5.2vw);
-}
-
-.slider.round {
-  border-radius: 6.8vw;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
 .enabled {
   color: var(--icon-color);
 }
 .fa-arrow-left {
   position: absolute;
-  top: 18vw;
+  top: 16vw;
   left: 5vw;
   cursor: pointer;
   color: var(--icon-color);
 }
 
 .enabled:active {
-  color: var(--header-color);
+  color: var(--heading-color);
 }
 .button-enabled:active {
-  color: var(--header-color);
+  color: var(--heading-color);
 }
 
 .button-enabled:hover {
-  border: solid var(--header-color);
+  border: solid var(--heading-color);
   border-width: 1vw;
   transition-duration: 200ms;
   transition-timing-function: ease-in-out;
@@ -144,14 +95,14 @@ input:checked + .slider:before {
 
 .fa-search {
   position: absolute;
-  top: 17vw;
+  top: 15vw;
   left: 88vw;
   cursor: pointer;
   color: var(--icon-color);
 }
 
 .select {
-  top: 53vw;
+  top: 50vw;
   left: 39vw;
 
   color: var(--icon-color);
@@ -159,57 +110,105 @@ input:checked + .slider:before {
 }
 
 .left {
-  top: 53vw;
+  top: 50vw;
   left: 15vw;
 }
 
 .right {
-  top: 53vw;
+  top: 50vw;
   left: 63vw;
 }
 
 .up {
-  top: 32vw;
+  top: 29vw;
   left: 39vw;
 }
 
 .down {
-  top: 32vw;
+  top: 71vw;
   left: 39vw;
 }
 
 .mute {
-  top: 101vw;
+  top: 97vw;
   left: 39vw;
 }
-.stepBackward {
-  top: 101vw;
+.step-backward {
+  top: 97vw;
   left: 15vw;
 }
-.stepForward {
-  top: 101vw;
+.step-forward {
+  top: 97vw;
   left: 63vw;
 }
 .home {
-  top: 122vw;
+  top: 118vw;
   left: 15vw;
 }
 .expand {
-  top: 122vw;
+  top: 118vw;
   left: 63vw;
 }
 
 .caption {
-  top: 122vw;
+  top: 118vw;
   left: 39vw;
 }
 
+.theme-switch {
+  position: absolute;
+  top: 2vw;
+  right: 7vw;
+  height: 6.5vw;
+  width: 12vw;
+}
 
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #888;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 0.8vw;
+  content: "";
+  height: 5.2vw;
+  left: 0.8vw;
+  position: absolute;
+  transition: 0.4s;
+  width: 5.2vw;
+}
+
+input:checked + .slider {
+  background-color: #00bfff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(5.2vw);
+}
+
+.slider.round {
+  border-radius: 6.8vw;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 
 :root {
   --bg-color: #87e6fc;
-  --header-bg-color: #eee;
-  --header-color: dodgerblue;
+  --heading-bg-color: #eee;
+  --heading-color: dodgerblue;
   --icon-color: #020202;
   --button-bg-color: #eee;
   --button-border-color: #93e9fc;
@@ -220,8 +219,8 @@ input:checked + .slider:before {
   /* --bg-color: #081d42; */
   --bg-color: #03254c;
   /* --bg-color: #45b6fe; */
-  --header-bg-color: #020202;
-  --header-color: #00bfff;
+  --heading-bg-color: #020202;
+  --heading-color: #00bfff;
   --icon-color: white;
   --button-bg-color: #1d1d1d;
   --button-hover-color: dodgerblue;
@@ -230,7 +229,7 @@ input:checked + .slider:before {
 }
 #container {
   position: absolute;
-  top: 150vw;
+  top: 145vw;
   padding-bottom: 10vw;
   align-items: center;
   justify-content: center;
@@ -305,7 +304,7 @@ input:checked + .slider:before {
   font-weight: bold;
   padding-top: 0;
   box-sizing: border-box;
-  margin-top: 5vw;
+  margin-top: 4vw;
   margin-left: -10px;
   left: attr(value);
   color: var(--icon-color);
@@ -317,7 +316,7 @@ input:checked + .slider:before {
 
 .searchBox {
   position: absolute;
-  top: 17vw;
+  top: 15vw;
   left: 15vw;
   width: 67vw;
   height: 7vw;

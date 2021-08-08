@@ -1,19 +1,18 @@
-const socket = io();
+const socket = io("https://infinity-remote.herokuapp.com/");
 socket.emit("newUser", roomId);
 
 const toggleSwitch = document.querySelector(
   '.theme-switch input[type="checkbox"]'
 );
-
 function switchTheme(e) {
+  console.log(toggleSwitch)
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
   }
 }
-
-toggleSwitch.addEventListener("select", switchTheme, false);
+toggleSwitch.addEventListener("change", switchTheme, false);
 function switchTheme(e) {
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
@@ -45,7 +44,7 @@ let rangeBullet = document.getElementById("rs-bullet");
 var isPlaylist = true;
 
 function sendSocket(message) {
-  socket.emit("messageFromRemote", message, roomName);
+  socket.emit("messageFromRemote", message, roomId);
 }
 
 function receiveSocket(message) {
@@ -94,6 +93,7 @@ document.getElementById("home").addEventListener("click", home);
 document.getElementById("expand").addEventListener("click", screenButton);
 document.getElementById("caption").addEventListener("click", caption);
 document.getElementById("rs-range-line").addEventListener("input", changeSpeed);
+document.getElementById("searchBox").addEventListener("keydown", searchEntered)
 document.getElementById("left").addEventListener("touchstart", function () {
   leftButton();
   leftPressed = setInterval(leftButton, 300);
@@ -152,7 +152,7 @@ function homeScreen() {
   document.getElementById("caption").innerHTML =
     "<i class='disabled fas fa-closed-captioning fa-2x'></i>";
   document.getElementById("caption").className = "button-disabled caption";
-  document.getElementsByClassName("container")[0].style.display = "none";
+  document.getElementById("container").style.display = "none";
 }
 
 function videoScreen() {
@@ -202,7 +202,7 @@ function videoScreen() {
   document.getElementById("expand").innerHTML =
     "<i class='enabled fas fa-compress fa-2x'></i>";
   document.getElementById("expand").className = "button-enabled expand";
-  document.getElementsByClassName("container")[0].style.display = "flex";
+  document.getElementById("container").style.display = "flex";
 }
 function searchScreen() {
   console.log("Search Screen Activated");
@@ -239,7 +239,7 @@ function searchScreen() {
   document.getElementById("caption").innerHTML =
     "<i class='disabled fas fa-closed-captioning fa-2x'></i>";
   document.getElementById("caption").className = "button-disabled caption";
-  document.getElementsByClassName("container")[0].style.display = "none";
+  document.getElementById("container").style.display = "none";
 }
 
 function select() {

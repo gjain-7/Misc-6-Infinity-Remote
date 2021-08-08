@@ -529,6 +529,7 @@ function screenButton() {
   }
   isHighlighted = true;
   inTheaterMode = !inTheaterMode;
+  console.log(inTheaterMode)
   if (inTheaterMode) {
     window.scrollTo(0, 0);
   } else {
@@ -821,7 +822,7 @@ function gotMessage(message, _sender, sendResponse) {
     selectEntered();
   } else if (message.split(":")[0] == "changeSpeed") {
     changeSpeed(Number(message.split(":")[1]));
-  } else if (message === "sendMeURL") {
+  } else if (message === "connectToExtension") {
     sendStateInfo();
   } else if (message.split(":")[0] == "search") {
     let searchQuery = message.split(":")[1];

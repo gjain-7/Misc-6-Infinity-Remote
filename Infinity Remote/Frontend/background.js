@@ -1,7 +1,7 @@
 // console.log("background initiated");
 const socket = io("https://infinity-remote.herokuapp.com");
 socket.on("connect", function () {
-  // console.log("content initiated", socket.id);
+  console.log("content initiated", socket.id);
   chrome.storage.local.set({ roomId: socket.id });
 });
 

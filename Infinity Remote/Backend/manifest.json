@@ -35,7 +35,7 @@
 
 
     ],
-    "start_url":"https://infinity-remote.herokuapp.coms",
+    "start_url":"https://infinity-remote.herokuapp.com",
     "background_color":"#03a8f2",
     "display":"standalone",
     "theme_color":"#4dbaa8",

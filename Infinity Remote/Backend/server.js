@@ -74,13 +74,13 @@ io.on("connection", (socket) => {
         io.in(socket.id).emit("remoteAlreadyConnected");
       }
     } else {
-      io.in(socket.id).emit("invalidQr");
+      io.in(socket.id).emit("invalidQR");
     }
   });
 
   socket.on("messageFromRemote", (message, room) => {
     let roomId = io.sockets.adapter.rooms.get(room);
-    if (roomId.has(socket.id)) {
+    if (roomId && roomId.has(socket.id)) {
       io.in(room).emit("messageFromRemote", message);
     }
   });

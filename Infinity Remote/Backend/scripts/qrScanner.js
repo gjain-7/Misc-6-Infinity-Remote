@@ -1,6 +1,6 @@
 const qrCode = window.qrcode;
 const video = document.createElement("video");
-const canvasElement = document.getElementById("qrCanvas");
+const canvasElement = document.getElementById("qr-canvas");
 const canvas = canvasElement.getContext("2d");
 const form = document.querySelector("form");
 

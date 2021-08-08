@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io("https://infinity-remote.herokuapp.com/");
 socket.emit("newUser", roomId);
 
 socket.on("connectionEstablished", () => {
@@ -12,7 +12,7 @@ socket.on("remoteAlreadyConnected", () => {
   document.getElementById("secondConnection").submit();
 });
 
-socket.on("invalidQr", () => {
+socket.on("invalidQR", () => {
   // console.log("Connection Error");
-  document.getElementById("invalidQr").submit();
+  document.getElementById("invalidQR").submit();
 });
