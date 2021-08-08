@@ -54,12 +54,16 @@ Presentation can be found [here](https://docs.google.com/presentation/d/1hgWD-B6
 ### UML Diagram
 ![UML Diagram illustrating the design flow of the Project](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/main/UML%20Diagram.svg)
 
+### GIFs
+![GIF of QR-Code being scanned](https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/713354ed326e67a0277a5cb54ab9416d368d21e8/GIF/QR-Scanner.gif)
+![GIF of video-screen controls](
+https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/713354ed326e67a0277a5cb54ab9416d368d21e8/GIF/Video-Screen.gif)
+
 ### Screenshots
 <img src="https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/87a3027b7bccbb2c48e5cac2398111ba36df766c/Screenshots/QR-Scanner.png" width="250" alt="QR-Scanner">
 <img src="https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/87a3027b7bccbb2c48e5cac2398111ba36df766c/Screenshots/Remote-Panels.png" width="250" alt="Remote-Navigation">
 <img src="https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/87a3027b7bccbb2c48e5cac2398111ba36df766c/Screenshots/Remote-video-light.png" width="250" alt="Remote controlling Youtube Video">
 <img src="https://github.com/AshishRajIITI/Misc-6-Infinity-Remote/blob/87a3027b7bccbb2c48e5cac2398111ba36df766c/Screenshots/Extension-Video.png" width="900" alt="Video being controlled by Remote">
-
 
 
 
