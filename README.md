@@ -1,9 +1,9 @@
-# Misc-6_Infinity-Remote
+# [Misc-6_Infinity-Remote](https://docs.google.com/document/d/1REjqQN7qbH5l_CglM1tw-Q24cmVuz2DY5YAoGSE6kVo/edit?usp=sharing)
 
 ### Description
 This Project gives you a Chrome Extension and a Progressive Web App (PWA) allowing you to control Youtube on your Desktop Browser from the PWA in your Mobile. It enforces a 1-1 connection between the Browser Extension and the PWA. The Extension gets connected to the PWA using a QR Code which has to be scanned using the built-in QR Code Scanner in the PWA. This will land you on the Infinity Remote page that allows you to control the Youtube. Proper Instructions / Icons helps the User control the Utility.
 
-### [Developer Details](https://docs.google.com/document/d/1REjqQN7qbH5l_CglM1tw-Q24cmVuz2DY5YAoGSE6kVo/edit?usp=sharing)
+### Developer Details
 Team Members:
 1. Mukul Jain                            (200001050)
 2. Gaurav Khushpat Jain                  (200001023)
